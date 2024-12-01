@@ -70,8 +70,8 @@
     <div class="main-content">
       <h1>{{ section.settings.mainTitle | capitalize }}</h1>
       <p>
-        {{ section.settings.mainBriefDescription | capitalize }}
-        <span>{{ section.settings.mainDetailedDescription }}</span>
+        {{ section.settings.mainBriefDescription }}
+        <span>{{ section.settings.mainDetailedDescription | capitalize }}</span>
       </p>
       <button class="btn">
         <span>{{ section.settings.mainButtonText }}</span>
@@ -104,6 +104,12 @@
     </picture>
   </div>
 </article>
+<footer>
+  <p>
+    {{ section.settings.footerSloganMain }}
+    <span>{{ section.settings.footerSloganLongDesc }}</span><span>{{ section.settings.footerSloganShortDesc }}</span>
+  </p>
+</footer>
 {% comment %} section markup {% endcomment %}
 
 {% schema %}
@@ -160,6 +166,31 @@
       "id": "mainButtonText",
       "label": "Main Button Text",
       "default": "shop now",
+      "placeholder": "Enter text here..."
+    },
+    {
+      "type": "header",
+      "content": "Footer Settings"
+    },
+    {
+      "type": "text",
+      "id": "footerSloganMain",
+      "label": "Footer Slogan",
+      "default": "sustainable, ethically made",
+      "placeholder": "Enter text here..."
+    },
+    {
+      "type": "text",
+      "id": "footerSloganLongDesc",
+      "label": "Footer Slogan Long Description",
+      "default": "in sizes xxs to 6xl",
+      "placeholder": "Enter text here..."
+    },
+    {
+      "type": "text",
+      "id": "footerSloganShortDesc",
+      "label": "Footer Slogan Brief Description",
+      "default": "activewear",
       "placeholder": "Enter text here..."
     }
   ],

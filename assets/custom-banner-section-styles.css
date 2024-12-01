@@ -165,6 +165,7 @@
   text-align: center;
   background-color: var(--clr-accent-grey);
   padding: 0.625rem 0;
+  text-transform: uppercase;
 }
 .banner-section footer p {
   font-size: 1rem;
