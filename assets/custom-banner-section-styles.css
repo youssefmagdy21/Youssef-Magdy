@@ -72,75 +72,75 @@
 /* header styles */
 
 /* main styles */
-.banner-section main .main-cover {
+.banner-section .main .main-cover {
   width: 100%;
   height: 24.375rem;
   object-fit: cover;
   object-position: bottom;
 }
-.banner-section main .main-content-container {
+.banner-section .main .main-content-container {
   display: grid;
   grid-template-columns: 30.25rem 100vw;
   align-items: center;
   overflow: hidden;
   padding-left: 4.25rem;
 }
-.banner-section main .main-content-cover {
+.banner-section .main .main-content-cover {
   width: 100%;
   height: 25.125rem;
   object-fit: cover;
   object-position: top;
 }
-.banner-section main .main-content {
+.banner-section .main .main-content {
   max-width: 30.25rem;
 }
-.banner-section main .main-content h1 {
+.banner-section .main .main-content h1 {
   font-size: 4.375rem;
   line-height: 1;
   font-weight: 500;
 }
-.banner-section main .main-content p {
+.banner-section .main .main-content p {
   font-size: 1.25rem;
   line-height: 1.4;
   margin-top: 3.125rem;
   margin-bottom: 3.125rem;
 }
-.banner-section main .main-content .btn {
+.banner-section .main .main-content .btn {
   background-color: var(--clr-black);
   color: var(--clr-white);
 }
-.banner-section main .main-content .btn::before {
+.banner-section .main .main-content .btn::before {
   background-color: var(--clr-btn-secondary);
 }
-.banner-section main .main-content .btn:hover {
+.banner-section .main .main-content .btn:hover {
   color: var(--clr-black);
 }
-.banner-section main .main-content .btn:hover > svg path {
+.banner-section .main .main-content .btn:hover > svg path {
   fill: var(--clr-black);
 }
 
 @media (max-width: 48rem) {
-  .banner-section main .main-cover {
+  .banner-section .main .main-cover {
     display: none;
   }
-  .banner-section main .main-content {
+  .banner-section .main .main-content {
     text-align: center;
     padding-left: 1rem;
     padding-right: 1rem;
   }
-  .banner-section main .main-content h1 {
+  .banner-section .main .main-content h1 {
     font-size: 1.875rem;
     margin-top: 3.125rem;
   }
-  .banner-section main .main-content p {
+  .banner-section .main .main-content p {
     font-size: 1rem;
     margin-top: 1.5rem;
     margin-bottom: 0;
   }
-  .banner-section main .main-content p > span {
+  .banner-section .main .main-content p > span {
     display: none;
   }
-  .banner-section main .main-content-container {
+  .banner-section .main .main-content-container {
     display: grid;
     grid-template-columns: 1fr;
     padding-left: 0;
@@ -148,13 +148,13 @@
     position: relative;
     justify-items: center;
   }
-  .banner-section main .main-content .btn {
+  .banner-section .main .main-content .btn {
     position: absolute;
     bottom: 2.5rem;
     left: 50%;
     transform: translateX(-50%);
   }
-  .banner-section main .main-content-cover {
+  .banner-section .main .main-content-cover {
     width: 100vw;
     height: 16.5rem;
   }
