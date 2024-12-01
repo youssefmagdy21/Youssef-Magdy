@@ -68,9 +68,9 @@
   <img src="{{'cover-desktop.svg' | asset_url}}" alt="" class="main-cover" width="1052" height="400">
   <div class="main-content-container">
     <div class="main-content">
-      <h1>{{ section.settings.mainTitle | capitalize }}</h1>
+      <h1>{{ section.settings.mainTitle }}</h1>
       <p>
-        {{ section.settings.mainBriefDescription }}
+        {{ section.settings.mainBriefDescription | capitalize }}
         <span>{{ section.settings.mainDetailedDescription | capitalize }}</span>
       </p>
       <button class="btn">
@@ -159,7 +159,8 @@
       "id": "mainDetailedDescription",
       "label": "Main Detailed Description",
       "default": "Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.",
-      "placeholder": "Enter text here..."
+      "placeholder": "Enter text here...",
+      "info": "This only shows on devices with larger screens (eg. Desktop)"
     },
     {
       "type": "text",
@@ -184,14 +185,16 @@
       "id": "footerSloganLongDesc",
       "label": "Footer Slogan Long Description",
       "default": "in sizes xxs to 6xl",
-      "placeholder": "Enter text here..."
+      "placeholder": "Enter text here...",
+      "info": "This shows on devices with larger screens (eg. Desktop)"
     },
     {
       "type": "text",
       "id": "footerSloganShortDesc",
       "label": "Footer Slogan Brief Description",
       "default": "activewear",
-      "placeholder": "Enter text here..."
+      "placeholder": "Enter text here...",
+      "info": "This shows on devices with smaller screens (eg. Mobile)"
     }
   ],
   "blocks": [],
