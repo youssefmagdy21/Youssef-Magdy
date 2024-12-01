@@ -47,7 +47,7 @@
     </div>
     <p class="slogan slogan-desktop">{{ section.settings.headerSlogan }}</p>
     <button class="btn btn-desktop">
-      <span>choose gift</span>
+      <span>{{ section.settings.headerButtonText }}</span>
       <svg
         width="27"
         height="12"
@@ -74,8 +74,14 @@
     {
       "type": "text",
       "id": "headerSlogan",
-      "label": "Header Slogan",
+      "label": "Header Slogan Text",
       "default": "Find the ideal gift for your loved ones."
+    },
+    {
+      "type": "text",
+      "id": "headerButtonText",
+      "label": "Header Button Text",
+      "default": "Choose Gift"
     }
   ],
   "blocks": [],
