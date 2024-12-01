@@ -68,15 +68,13 @@
   <img src="{{'cover-desktop.svg' | asset_url}}" alt="" class="main-cover" width="1052" height="400">
   <div class="main-content-container">
     <div class="main-content">
-      <h1>The Gift Guide</h1>
+      <h1>{{ section.settings.mainTitle | capitalize }}</h1>
       <p>
-        Discover Joy: Your Ultimate Holiday Gift Destination.
-        <span
-          >Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.</span
-        >
+        {{ section.settings.mainBriefDescription | capitalize }}
+        <span>{{ section.settings.mainDetailedDescription }}</span>
       </p>
       <button class="btn">
-        <span>shop now</span>
+        <span>{{ section.settings.mainButtonText }}</span>
         <svg
           width="27"
           height="12"
@@ -130,6 +128,38 @@
       "id": "headerButtonText",
       "label": "Header Button Text",
       "default": "Choose Gift",
+      "placeholder": "Enter text here..."
+    },
+    {
+      "type": "header",
+      "content": "Main Content Settings"
+    },
+    {
+      "type": "text",
+      "id": "mainTitle",
+      "label": "Main Title Text",
+      "default": "The Gift Guide",
+      "placeholder": "Enter text here..."
+    },
+    {
+      "type": "text",
+      "id": "mainBriefDescription",
+      "label": "Main Brief Description",
+      "default": "Discover Joy: Your Ultimate Holiday Gift Destination.",
+      "placeholder": "Enter text here..."
+    },
+    {
+      "type": "textarea",
+      "id": "mainDetailedDescription",
+      "label": "Main Detailed Description",
+      "default": "Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.",
+      "placeholder": "Enter text here..."
+    },
+    {
+      "type": "text",
+      "id": "mainButtonText",
+      "label": "Main Button Text",
+      "default": "shop now",
       "placeholder": "Enter text here..."
     }
   ],
