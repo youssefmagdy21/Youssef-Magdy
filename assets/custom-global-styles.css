@@ -6,10 +6,6 @@
   margin: 0;
   padding: 0;
 }
-body {
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-}
 img,
 picture,
 video,
@@ -53,19 +49,33 @@ h6 {
   --clr-btnCart: hsla(0, 0%, 97%, 0.8);
   --ff-grid-header: "Lustria", serif;
   --ff-primary: "Jost", sans-serif;
-
   --radio-choice-clr-1: var(--clr-white);
   --radio-choice-clr-2: var(--clr-white);
+
+  /* explicit default style values */
+  --fs-default: 16px;
+  --fw-default: 400;
+  --line-height-default: 1.5;
+  --letter-spacing-default: normal;
+  --color-default: var(--clr-black);
 }
 /* global variables */
 /* general styles */
 html {
-  font-size: 16px;
-}
-body {
-  font-family: var(--ff-primary);
+  /* reset relative font size */
+  font-size: var(--fs-default);
+  -webkit-font-smoothing: antialiased;
   /* remove highlight when tapping buttons */
   -webkit-tap-highlight-color: transparent;
+}
+/* reset defaults for only sections in the page */
+section {
+  font-family: var(--ff-primary);
+  font-size: var(--fs-default);
+  font-weight: var(--fw-default);
+  letter-spacing: var(--letter-spacing-default);
+  color: var(--color-default);
+  line-height: var(--line-height-default);
 }
 .btn {
   display: flex;
