@@ -77,6 +77,17 @@ section {
   color: var(--color-default);
   line-height: var(--line-height-default);
 }
+section h1,
+section h2,
+section h3,
+section h4,
+section h5,
+section h6 {
+  font-family: inherit;
+  font-size: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+}
 .btn {
   display: flex;
   align-items: center;
