@@ -25,7 +25,7 @@
       >
     </div>
     <div id="nav-menu">
-      <p class="slogan">Find the ideal gift for your loved ones.</p>
+      <p class="slogan">{{ section.settings.headerSlogan }}</p>
       <button class="btn">
         <span>choose gift</span>
         <svg
@@ -45,7 +45,7 @@
     <div class="logo">
       <img src="{{'logo.svg' | asset_url}}" alt="logo" width="152" height="19">
     </div>
-    <p class="slogan slogan-desktop">Find the ideal gift for your loved ones.</p>
+    <p class="slogan slogan-desktop">{{ section.settings.headerSlogan }}</p>
     <button class="btn btn-desktop">
       <span>choose gift</span>
       <svg
@@ -70,7 +70,14 @@
   "name": "Custom Banner Section",
   "tag": "section",
   "class": "banner-section",
-  "settings": [],
+  "settings": [
+    {
+      "type": "text",
+      "id": "headerSlogan",
+      "label": "Header Slogan",
+      "default": "Find the ideal gift for your loved ones."
+    }
+  ],
   "blocks": [],
   "presets": [
     {
