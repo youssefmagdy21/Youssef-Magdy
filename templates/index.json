@@ -48,10 +48,6 @@
         "show_text_below": false
       }
     },
-    "custom_banner_section_JfjDk7": {
-      "type": "custom-banner-section",
-      "settings": {}
-    },
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
@@ -83,7 +79,6 @@
   },
   "order": [
     "image_banner",
-    "custom_banner_section_JfjDk7",
     "featured_collection"
   ]
 }
