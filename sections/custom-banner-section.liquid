@@ -2,14 +2,14 @@
   <div class="container">
     <div id="nav-icon">
       <img
-        src="icon-open-nav"
+        src="{{ 'icon-open-nav.png' | asset_img_url }}"
         alt="open nav"
         id="open-nav"
         width="12"
         height="12"
       >
       <img
-        src="icon-close-nav"
+        src="{{ 'icon-close-nav.png' | asset_img_url }}"
         alt="close nav"
         id="close-nav"
         width="12"
@@ -35,7 +35,7 @@
       </button>
     </div>
     <div class="logo">
-      <img src="logo.svg" alt="logo" width="152" height="19">
+      <img src="{{'logo.svg' | asset_img_url}}" alt="logo" width="152" height="19">
     </div>
     <p class="slogan slogan-desktop">Find the ideal gift for your loved ones.</p>
     <button class="btn btn-desktop">
