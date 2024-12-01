@@ -1,3 +1,11 @@
+{% comment %} include css stylesheet {% endcomment %}
+{{ 'custom-global-styles.css' | asset_url | stylesheet_tag }}
+{{ 'custom-banner-section-styles.css' | asset_url | stylesheet_tag }}
+
+{% comment %} include javascript file {% endcomment %}
+<script src="{{ 'custom-banner-section-script.js' | asset_url }}" defer></script>
+
+{% comment %} section markup {% endcomment %}
 <header>
   <div class="container">
     <div id="nav-icon">
@@ -35,7 +43,7 @@
       </button>
     </div>
     <div class="logo">
-      <img src="{{'logo.svg' | asset_img_url}}" alt="logo" width="152" height="19">
+      <img src="{{'logo.svg' | asset_url}}" alt="logo" width="152" height="19">
     </div>
     <p class="slogan slogan-desktop">Find the ideal gift for your loved ones.</p>
     <button class="btn btn-desktop">
@@ -55,6 +63,7 @@
     </button>
   </div>
 </header>
+{% comment %} section markup {% endcomment %}
 
 {% schema %}
 {

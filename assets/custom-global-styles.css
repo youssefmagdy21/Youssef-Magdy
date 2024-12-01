@@ -1,0 +1,98 @@
+/* CSS RESETS */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+/* END CSS RESETS */
+/* global variables */
+:root {
+  --clr-accent-grey: #f5f5f5;
+  --clr-white: #ffffff;
+  --clr-black: #000000;
+  --clr-btn-primary: var(--clr-black);
+  --clr-btn-secondary: #fff544;
+  --clr-text: var(--clr-black);
+  --clr-btnCart: hsla(0, 0%, 97%, 0.8);
+  --ff-grid-header: "Lustria", serif;
+  --ff-primary: "Jost", sans-serif;
+
+  --radio-choice-clr-1: var(--clr-white);
+  --radio-choice-clr-2: var(--clr-white);
+}
+/* global variables */
+/* general styles */
+body {
+  font-family: var(--ff-primary);
+  /* remove highlight when tapping buttons */
+  -webkit-tap-highlight-color: transparent;
+}
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  gap: 1rem;
+  width: 12.9375rem;
+  height: 2.8125rem;
+  border: none;
+  position: relative;
+  z-index: 1;
+  transition:
+    transform ease 250ms,
+    box-shadow ease 250ms;
+}
+.btn:hover {
+  transform: scale(1.01);
+  box-shadow: hsla(0, 0%, 0%, 0.1) 0 0 4px;
+}
+.btn::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  z-index: -1;
+  transition: width ease 250ms;
+}
+.btn:hover::before {
+  width: 100%;
+}
+/* general styles */
