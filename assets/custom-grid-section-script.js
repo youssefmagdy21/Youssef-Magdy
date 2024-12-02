@@ -14,11 +14,7 @@ function closePopup(e) {
 function openPopup(e) {
   productPopupContainer.classList.add("active");
   document.body.style.overflowY = "hidden";
-  // const currentPopupImage =
-  //   e.currentTarget.parentElement.children[1].getAttribute("src");
-  // productPopupWindow
-  //   .querySelector(".product-popup__image img")
-  //   .setAttribute("src", currentPopupImage);
+  console.log(e);
 }
 
 productPopupButtons.forEach((element) => {
