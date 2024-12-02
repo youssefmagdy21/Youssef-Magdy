@@ -46,11 +46,11 @@ productPopupContainers.forEach((ele) => {
 });
 
 // set color of selections from input value
-const colorChoice1 = document.querySelector("#color-1").value;
-const colorChoice2 = document.querySelector("#color-2").value;
+// const colorChoice1 = document.querySelector("#color-1").value;
+// const colorChoice2 = document.querySelector("#color-2").value;
 
-root.style.setProperty("--radio-choice-clr-1", colorChoice1);
-root.style.setProperty("--radio-choice-clr-2", colorChoice2);
+// root.style.setProperty("--radio-choice-clr-1", colorChoice1);
+// root.style.setProperty("--radio-choice-clr-2", colorChoice2);
 
 // sizepicker open / close
 const toggleSizepickers = document.querySelectorAll(".toggle-sizepicker");

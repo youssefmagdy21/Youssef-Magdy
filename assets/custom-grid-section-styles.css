@@ -245,13 +245,14 @@
   left: 0;
   top: 0;
   z-index: -2;
+  background-color: attr(data-bgcolor);
 }
-.product-popup__colorpicker .colorpicker label:first-of-type::before {
+/* .product-popup__colorpicker .colorpicker label:first-of-type::before {
   background-color: var(--radio-choice-clr-1);
 }
 .product-popup__colorpicker .colorpicker label:last-of-type::before {
   background-color: var(--radio-choice-clr-2);
-}
+} */
 .product-popup__colorpicker .colorpicker input {
   display: none;
 }

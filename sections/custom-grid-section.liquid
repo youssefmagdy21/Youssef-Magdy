@@ -84,7 +84,7 @@
                 <h4>Color</h4>
                 <div class="colorpicker">
                   {% for color in product_colors %}
-                    <label>
+                    <label data-bgcolor="{{ color }}">
                       {{ color }}
                       <input type="radio" name="color" value="{{ color }}">
                     </label>

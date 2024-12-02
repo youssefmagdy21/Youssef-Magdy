@@ -49,8 +49,8 @@ h6 {
   --clr-btnCart: hsla(0, 0%, 97%, 0.8);
   --ff-grid-header: "Lustria", serif;
   --ff-primary: "Jost", sans-serif;
-  --radio-choice-clr-1: var(--clr-white);
-  --radio-choice-clr-2: var(--clr-white);
+  /* --radio-choice-clr-1: var(--clr-white);
+  --radio-choice-clr-2: var(--clr-white); */
 
   /* explicit default style values */
   --fs-default: 16px;
