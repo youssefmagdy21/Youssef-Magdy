@@ -10,7 +10,6 @@ const productPopupExits = document.querySelectorAll(".product-popup__exit");
 // open popup screen for selected product
 function openPopup(e) {
   const index = e.currentTarget.dataset.index;
-  console.log(e, index);
   productPopupContainers.forEach((ele) => {
     if (ele.dataset.index === index) {
       ele.classList.add("active");
@@ -30,7 +29,6 @@ function closePopup() {
     ele.classList.remove("active");
   });
   document.body.style.overflowY = "visible";
-  console.log("closed");
 }
 
 productPopupExits.forEach((ele) => {
@@ -55,37 +53,68 @@ root.style.setProperty("--radio-choice-clr-1", colorChoice1);
 root.style.setProperty("--radio-choice-clr-2", colorChoice2);
 
 // sizepicker open / close
-const toggleSizepicker = document.querySelector(".toggle-sizepicker");
-const sizepickerTitle = document.querySelector(".sizepicker p");
-const sizepickerIcon = document.querySelector(".sizepicker .arrow img");
-const sizepickerMenu = document.querySelector(".sizepicker .sizepicker-menu");
+const toggleSizepickers = document.querySelectorAll(".toggle-sizepicker");
+// const sizepickerTitles = document.querySelectorAll(".sizepicker p");
+const sizepickerIcons = document.querySelectorAll(".sizepicker .arrow img");
+const sizepickerMenus = document.querySelectorAll(
+  ".sizepicker .sizepicker-menu",
+);
+
 let isMenuOpen = false;
-function openSizepicker() {
+function openSizepicker(e) {
   isMenuOpen = true;
-  sizepickerTitle.innerHTML = "Choose your size";
-  sizepickerMenu.classList.add("active");
-  sizepickerIcon.classList.add("active");
-  toggleSizepicker.classList.add("active");
+  // sizepickerTitle.innerHTML = "Choose your size";
+  const index = e.currentTarget.dataset.index;
+  sizepickerMenus.forEach((ele) => {
+    if (ele.dataset.index === index) {
+      ele.classList.add("active");
+      return;
+    }
+  });
+  sizepickerIcons.forEach((ele) => {
+    if (ele.dataset.index === index) {
+      ele.classList.add("active");
+      return;
+    }
+  });
+  toggleSizepickers.forEach((ele) => {
+    if (ele.dataset.index === index) {
+      ele.classList.add("active");
+      return;
+    }
+  });
 }
-function closeSizePicker() {
+function closeSizePicker(e) {
   isMenuOpen = false;
-  sizepickerMenu.classList.remove("active");
-  sizepickerIcon.classList.remove("active");
-  toggleSizepicker.classList.remove("active");
+  sizepickerMenus.forEach((ele) => {
+    ele.classList.remove("active");
+  });
+  sizepickerIcons.forEach((ele) => {
+    ele.classList.remove("active");
+  });
+  toggleSizepickers.forEach((ele) => {
+    ele.classList.remove("active");
+  });
 }
 
-toggleSizepicker.addEventListener("click", openSizepicker);
-
-sizepickerIcon.addEventListener("click", (e) => {
-  e.stopPropagation();
-  if (!isMenuOpen) {
-    openSizepicker();
-  } else {
-    closeSizePicker();
-  }
+toggleSizepickers.forEach((ele) => {
+  ele.addEventListener("click", openSizepicker);
 });
 
-sizepickerMenu.addEventListener("click", (e) => {
-  sizepickerTitle.innerHTML = e.target.innerHTML;
-  closeSizePicker();
+sizepickerIcons.forEach((ele) => {
+  ele.addEventListener("click", (e) => {
+    e.stopPropagation();
+    if (!isMenuOpen) {
+      openSizepicker();
+    } else {
+      closeSizePicker();
+    }
+  });
+});
+
+sizepickerMenus.forEach((ele) => {
+  ele.addEventListener("click", (e) => {
+    // sizepickerTitle.innerHTML = e.target.innerHTML;
+    closeSizePicker(e);
+  });
 });

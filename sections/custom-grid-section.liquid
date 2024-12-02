@@ -23,6 +23,8 @@
           assign product_title = selectedProduct.title
           assign product_price = selectedProduct.price | money
           assign product_desc = selectedProduct.description | strip_html | strip_newlines
+          assign product_colors = selectedProduct.options_by_name.color.values
+          assign product_sizes = selectedProduct.options_by_name.size.values
         %}
         <div class="products-grid__item">
           <button class="product-popup__btn" data-index="{{ forloop.index0 }}">
@@ -80,39 +82,36 @@
               <div class="product-popup__colorpicker">
                 <h4>Color</h4>
                 <div class="colorpicker">
-                  <label>
-                    White
-                    <input type="radio" name="color" value="white" id="color-1">
-                  </label>
-                  <label>
-                    Black
-                    <input
-                      type="radio"
-                      name="color"
-                      value="black"
-                      /
-                      id="color-2"
-                    >
-                  </label>
+                  {% for color in product_colors %}
+                    <label>
+                      {{ color }}
+                      <input type="radio" name="color" value="{{ color }}" id="color-{{ forloop.index }}">
+                    </label>
+                  {% endfor %}
+
                   <div class="checked-item"></div>
                 </div>
               </div>
               <div class="product-popup__sizepicker">
                 <h4>Size</h4>
                 <div class="sizepicker">
-                  <div class="toggle-sizepicker">
+                  <div class="toggle-sizepicker" data-index="{{ forloop.index0 }}">
                     <p>Choose your size</p>
                     <span class="arrow">
-                      <img src="{{ 'icon-sizepicker.svg' | asset_url}}" width="16" height="10" alt="">
+                      <img
+                        src="{{ 'icon-sizepicker.svg' | asset_url}}"
+                        width="16"
+                        height="10"
+                        alt=""
+                        data-index="{{ forloop.index0 }}"
+                      >
                     </span>
                   </div>
-                  <div class="sizepicker-menu">
+                  <div class="sizepicker-menu" data-index="{{ forloop.index0 }}">
                     <ul>
-                      <li>XS</li>
-                      <li>S</li>
-                      <li>M</li>
-                      <li>L</li>
-                      <li>XL</li>
+                      {% for size in product_sizes %}
+                        <li>{{ size }}</li>
+                      {% endfor %}
                     </ul>
                   </div>
                 </div>
