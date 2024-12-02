@@ -8,13 +8,6 @@ const productPopupContainerActive = document.querySelector(
   ".product-popup__container.active",
 );
 
-const productPopupWindowActive = productPopupContainerActive?.querySelector(
-  ".product-popup__window",
-);
-const productPopupExitActive = productPopupContainerActive?.querySelector(
-  ".product-popup__exit",
-);
-
 // open popup screen for selected product
 function openPopup(e) {
   const index = e.currentTarget.dataset.index;
@@ -38,17 +31,24 @@ function closePopup() {
   document.body.style.overflowY = "visible";
 }
 
-productPopupExitActive.addEventListener("click", closePopup);
-
-// close popup when clicked anywhere outside the popup window
-productPopupContainerActive.addEventListener("click", (e) => {
-  if (
-    e.target !== productPopupWindowActive &&
-    !productPopupWindowActive.contains(e.target)
-  ) {
-    closePopup();
-  }
-});
+if (!!productPopupContainerActive) {
+  const productPopupWindowActive = productPopupContainerActive.querySelector(
+    ".product-popup__window",
+  );
+  const productPopupExitActive = productPopupContainerActive.querySelector(
+    ".product-popup__exit",
+  );
+  productPopupExitActive.addEventListener("click", closePopup);
+  // close popup when clicked anywhere outside the popup window
+  productPopupContainerActive.addEventListener("click", (e) => {
+    if (
+      e.target !== productPopupWindowActive &&
+      !productPopupWindowActive.contains(e.target)
+    ) {
+      closePopup();
+    }
+  });
+}
 
 // set color of selections from input value
 const colorChoice1 = document.querySelector("#color-1").value;
