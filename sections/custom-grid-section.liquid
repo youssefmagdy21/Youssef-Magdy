@@ -1,0 +1,25 @@
+{% comment %} include css stylesheet {% endcomment %}
+{{ 'custom-global-styles.css' | asset_url | stylesheet_tag }}
+{{ 'custom-grid-section-styles.css' | asset_url | stylesheet_tag }}
+
+{% comment %} include javascript file {% endcomment %}
+<script src="{{ 'custom-grid-section-script.js' | asset_url }}" defer></script>
+
+{% comment %} section markup {% endcomment %}
+<p>I'm the grid section {{ section.id }}</p>
+{% comment %} section markup {% endcomment %}
+
+{% schema %}
+{
+  "name": "Custom Grid Section",
+  "tag": "section",
+  "class": "grid-section",
+  "settings": [],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "Custom Grid Section"
+    }
+  ]
+}
+{% endschema %}
