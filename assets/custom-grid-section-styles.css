@@ -245,7 +245,7 @@
   left: 0;
   top: 0;
   z-index: -2;
-  background-color: attr(data-bgcolor);
+  background-color: var(--selection-color-peak);
 }
 /* .product-popup__colorpicker .colorpicker label:first-of-type::before {
   background-color: var(--radio-choice-clr-1);
