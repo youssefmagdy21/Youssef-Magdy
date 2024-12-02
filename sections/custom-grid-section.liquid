@@ -8,7 +8,7 @@
 {% comment %} section markup {% endcomment %}
 <div class="grid-section-container">
   <h2>{{ section.settings.gridSectionTitle }}</h2>
-  {% if section.settings.selectedProducts.size == 0 %}
+  {% if section.settings.selectedProducts == blank %}
     <div class="products-grid__empty">
       <p>No Products Added To Show Here... <em>stay tuned</em></p>
     </div>
@@ -66,7 +66,7 @@
     {
       "type": "product_list",
       "id": "selectedProducts",
-      "label": "Products",
+      "label": "Fetured Products",
       "info": "Select products to add to the grid (max: 6)",
       "limit": 6
     }
