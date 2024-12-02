@@ -1,11 +1,7 @@
 /* grid section styles */
 /* //////////////////////////////////////// */
-.grid-section {
-  margin-top: 5.625rem;
-  position: relative;
-}
 .grid-section-container {
-  padding: 0 3.125rem 3.125rem 3.125rem;
+  padding: 5.625rem 3.125rem 3.125rem 3.125rem;
 }
 .grid-section h2 {
   font-family: var(--ff-grid-header);
@@ -52,11 +48,8 @@
   }
 }
 @media (max-width: 48rem) {
-  .grid-section {
-    margin-top: 2.5rem;
-  }
   .grid-section-container {
-    padding: 0 1rem 1.5rem 1rem;
+    padding: 2.5rem 1rem 1.5rem 1rem;
   }
   .grid-section h2 {
     font-size: 1.5rem;
