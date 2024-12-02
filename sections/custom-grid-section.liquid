@@ -86,10 +86,9 @@
                   {% for color in product_colors %}
                     <label>
                       {{ color }}
-                      <input type="radio" name="color" value="{{ color }}" id="color-{{ forloop.index }}">
+                      <input type="radio" name="color" value="{{ color }}">
                     </label>
                   {% endfor %}
-
                   <div class="checked-item"></div>
                 </div>
               </div>
