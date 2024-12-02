@@ -4,15 +4,8 @@ const productPopupButtons = document.querySelectorAll(".product-popup__btn");
 const productPopupContainers = document.querySelectorAll(
   ".product-popup__container",
 );
-const productPopupContainerActive = document.querySelector(
-  ".product-popup__container.active",
-);
-const productPopupWindowActive = productPopupContainerActive?.querySelector(
-  ".product-popup__window",
-);
-const productPopupExitActive = productPopupContainerActive?.querySelector(
-  ".product-popup__exit",
-);
+const productPopupWindows = document.querySelectorAll(".product-popup__window");
+const productPopupExits = document.querySelectorAll(".product-popup__exit");
 
 // open popup screen for selected product
 function openPopup(e) {
@@ -33,20 +26,24 @@ productPopupButtons.forEach((element) => {
 
 // close active popup screen
 function closePopup() {
-  productPopupContainerActive.classList.remove("active");
+  productPopupContainers.forEach((ele) => {
+    ele.classList.remove("active");
+  });
   document.body.style.overflowY = "visible";
   console.log("closed");
 }
 
-productPopupExitActive?.addEventListener("click", closePopup);
+productPopupExits.forEach((ele) => {
+  ele.addEventListener("click", closePopup);
+});
+
 // close popup when clicked anywhere outside the popup window
-productPopupContainerActive?.addEventListener("click", (e) => {
-  if (
-    e.target !== productPopupWindowActive &&
-    !productPopupWindowActive.contains(e.target)
-  ) {
-    closePopup();
-  }
+productPopupWindows.forEach((ele) => {
+  ele.addEventListener("click", (e) => {
+    if (e.target !== ele && !ele.contains(e.target)) {
+      closePopup();
+    }
+  });
 });
 
 // set color of selections from input value
