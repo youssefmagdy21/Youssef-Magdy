@@ -18,8 +18,6 @@
 }
 .products-grid__item {
   position: relative;
-  height: 444px;
-  background-color: red;
 }
 .products-grid__item img {
   width: 100%;
