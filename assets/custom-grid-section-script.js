@@ -38,9 +38,10 @@ productPopupExits.forEach((ele) => {
 });
 
 // close popup when clicked anywhere outside the popup window
-productPopupWindows.forEach((ele) => {
+productPopupContainers.forEach((ele) => {
+  let productWindow = ele.querySelector(".product-popup__window");
   ele.addEventListener("click", (e) => {
-    if (e.target !== ele && !ele.contains(e.target)) {
+    if (e.target !== productWindow && !productWindow.contains(e.target)) {
       closePopup();
     }
   });
