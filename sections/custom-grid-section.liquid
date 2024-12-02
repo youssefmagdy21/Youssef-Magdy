@@ -7,9 +7,9 @@
 
 {% comment %} section markup {% endcomment %}
 <div class="grid-section-container">
-  <h2>Tisso vison in the wild</h2>
+  <h2>{{ section.settings.gridSectionTitle }}</h2>
   <article class="products-grid">
-    {% for i in (1..6) %}
+    {% for selectedProduct in section.settings.selectedProducts %}
       <div class="products-grid__item">
         <button class="product-popup__btn">
           <svg
@@ -35,7 +35,7 @@
             />
           </svg>
         </button>
-        <img src="{{ 'product-1.jpg' | asset_img_url: 'master' }}" alt="product image" width="433" height="444">
+        {{ selectedProduct.featured_image | image_url: 'master' | image_tag | alt="product image" }}
       </div>
     {% endfor %}
   </article>
@@ -49,6 +49,12 @@
   "class": "grid-section",
   "settings": [
     { "type": "header", "content": "Products Grid Settings" },
+    {
+      "type": "text",
+      "id": "gridSectionTitle",
+      "label": "Section Title Text",
+      "default": "Tisso vison in the wild"
+    },
     {
       "type": "product_list",
       "id": "selectedProducts",
