@@ -35,7 +35,7 @@
             />
           </svg>
         </button>
-        {{ selectedProduct.featured_image | image_url: width: 433 | image_tag | alt="product image" }}
+        {{ selectedProduct.featured_image | image_url: width: 433 | image_tag: alt: 'product image' }}
       </div>
     {% endfor %}
   </article>
