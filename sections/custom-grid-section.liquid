@@ -22,7 +22,7 @@
           assign product_image = selectedProduct.featured_image
           assign product_title = selectedProduct.title
           assign product_price = selectedProduct.price | money
-          assign product_desc = selectedProduct.description
+          assign product_desc = selectedProduct.description | strip_html | strip_newlines
         %}
         <div class="products-grid__item">
           <button class="product-popup__btn">
