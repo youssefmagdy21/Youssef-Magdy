@@ -8,39 +8,45 @@
 {% comment %} section markup {% endcomment %}
 <div class="grid-section-container">
   <h2>{{ section.settings.gridSectionTitle }}</h2>
-  <article class="products-grid">
-    {% for selectedProduct in section.settings.selectedProducts %}
-      {% assign product_image = selectedProduct.featured_image %}
+  {% if section.settings.selectedProducts.size == 0 %}
+    <div class="products-grid__empty">
+      <p>No Products Added To Show Here... <em>stay tuned</em></p>
+    </div>
+  {% else %}
+    <article class="products-grid">
+      {% for selectedProduct in section.settings.selectedProducts %}
+        {% assign product_image = selectedProduct.featured_image %}
 
-      <div class="products-grid__item">
-        <button class="product-popup__btn">
-          <svg
-            width="10"
-            height="10"
-            viewBox="0 0 11 11"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M5.3457 1.04175V9.50329"
-              stroke="black"
-              stroke-width="1.5"
-              stroke-linecap="square"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M1.11523 5.27252H9.57677"
-              stroke="black"
-              stroke-width="1.5"
-              stroke-linecap="square"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </button>
-        {{ product_image | image_url: width: 433, height: 444 | image_tag: alt: selectedProduct.description }}
-      </div>
-    {% endfor %}
-  </article>
+        <div class="products-grid__item">
+          <button class="product-popup__btn">
+            <svg
+              width="10"
+              height="10"
+              viewBox="0 0 11 11"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M5.3457 1.04175V9.50329"
+                stroke="black"
+                stroke-width="1.5"
+                stroke-linecap="square"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M1.11523 5.27252H9.57677"
+                stroke="black"
+                stroke-width="1.5"
+                stroke-linecap="square"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+          {{ product_image | image_url: width: 433, height: 444 | image_tag: alt: selectedProduct.description }}
+        </div>
+      {% endfor %}
+    </article>
+  {% endif %}
 </div>
 {% comment %} section markup {% endcomment %}
 
