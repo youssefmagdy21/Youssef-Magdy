@@ -4,9 +4,7 @@ const productPopupButtons = document.querySelectorAll(".product-popup__btn");
 const productPopupContainers = document.querySelectorAll(
   ".product-popup__container",
 );
-const productPopupContainerActive = document.querySelector(
-  ".product-popup__container.active",
-);
+let isPopupOpen = false;
 
 // open popup screen for selected product
 function openPopup(e) {
@@ -19,6 +17,7 @@ function openPopup(e) {
     }
   });
   document.body.style.overflowY = "hidden";
+  isPopupOpen = true;
 }
 
 productPopupButtons.forEach((element) => {
@@ -31,7 +30,10 @@ function closePopup() {
   document.body.style.overflowY = "visible";
 }
 
-if (productPopupContainerActive) {
+if (isPopupOpen) {
+  const productPopupContainerActive = document.querySelector(
+    ".product-popup__container.active",
+  );
   const productPopupWindowActive = productPopupContainerActive.querySelector(
     ".product-popup__window",
   );
