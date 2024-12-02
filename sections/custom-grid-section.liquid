@@ -38,143 +38,6 @@
         <img src="{{ 'product-1.jpg' | asset_img_url: 'master' }}" alt="product image" width="433" height="444">
       </div>
     {% endfor %}
-    {% comment %}
-      <div class="products-grid__item">
-        <button class="product-popup__btn">
-          <svg
-            width="10"
-            height="10"
-            viewBox="0 0 11 11"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M5.3457 1.04175V9.50329"
-              stroke="black"
-              stroke-width="1.5"
-              stroke-linecap="square"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M1.11523 5.27252H9.57677"
-              stroke="black"
-              stroke-width="1.5"
-              stroke-linecap="square"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </button>
-        <img src="./assets/product-2.jpg" alt="product image" />
-      </div>
-      <div class="products-grid__item">
-        <button class="product-popup__btn">
-          <svg
-            width="10"
-            height="10"
-            viewBox="0 0 11 11"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M5.3457 1.04175V9.50329"
-              stroke="black"
-              stroke-width="1.5"
-              stroke-linecap="square"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M1.11523 5.27252H9.57677"
-              stroke="black"
-              stroke-width="1.5"
-              stroke-linecap="square"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </button>
-        <img src="./assets/product-3.jpg" alt="product image" />
-      </div>
-      <div class="products-grid__item">
-        <button class="product-popup__btn">
-          <svg
-            width="10"
-            height="10"
-            viewBox="0 0 11 11"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M5.3457 1.04175V9.50329"
-              stroke="black"
-              stroke-width="1.5"
-              stroke-linecap="square"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M1.11523 5.27252H9.57677"
-              stroke="black"
-              stroke-width="1.5"
-              stroke-linecap="square"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </button>
-        <img src="./assets/product-4.jpg" alt="product image" />
-      </div>
-      <div class="products-grid__item">
-        <button class="product-popup__btn">
-          <svg
-            width="10"
-            height="10"
-            viewBox="0 0 11 11"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M5.3457 1.04175V9.50329"
-              stroke="black"
-              stroke-width="1.5"
-              stroke-linecap="square"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M1.11523 5.27252H9.57677"
-              stroke="black"
-              stroke-width="1.5"
-              stroke-linecap="square"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </button>
-        <img src="./assets/product-5.jpg" alt="product image" />
-      </div>
-      <div class="products-grid__item">
-        <button class="product-popup__btn">
-          <svg
-            width="10"
-            height="10"
-            viewBox="0 0 11 11"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M5.3457 1.04175V9.50329"
-              stroke="black"
-              stroke-width="1.5"
-              stroke-linecap="square"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M1.11523 5.27252H9.57677"
-              stroke="black"
-              stroke-width="1.5"
-              stroke-linecap="square"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </button>
-        <img src="./assets/product-6.jpg" alt="product image" />
-      </div>
-    {% endcomment %}
   </article>
 </div>
 {% comment %} section markup {% endcomment %}
@@ -184,7 +47,16 @@
   "name": "Custom Grid Section",
   "tag": "section",
   "class": "grid-section",
-  "settings": [],
+  "settings": [
+    { "type": "header", "content": "Products Grid Settings" },
+    {
+      "type": "product_list",
+      "id": "selectedProducts",
+      "label": "Products",
+      "info": "Select products to add to the grid (max: 6)",
+      "limit": 6
+    }
+  ],
   "blocks": [],
   "presets": [
     {
