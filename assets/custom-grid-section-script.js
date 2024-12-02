@@ -40,6 +40,11 @@ if (isPopupOpen) {
   const productPopupExitActive = productPopupContainerActive.querySelector(
     ".product-popup__exit",
   );
+  console.log(
+    productPopupContainerActive,
+    productPopupWindowActive,
+    productPopupExitActive,
+  );
   productPopupExitActive.addEventListener("click", closePopup);
   // close popup when clicked anywhere outside the popup window
   productPopupContainerActive.addEventListener("click", (e) => {
