@@ -23,11 +23,12 @@
           assign product_title = selectedProduct.title
           assign product_price = selectedProduct.price | money
           assign product_desc = selectedProduct.description | strip_html | strip_newlines
-          assign product_colors = selectedProduct.options_by_name.color.values
-          assign product_sizes = selectedProduct.options_by_name.size.values
+          assign product_colors = selectedProduct.options_by_name.Color.values
+          assign product_sizes = selectedProduct.options_by_name.Size.values
+          assign idx = forloop.index0
         %}
         <div class="products-grid__item">
-          <button class="product-popup__btn" data-index="{{ forloop.index0 }}">
+          <button class="product-popup__btn" data-index="{{ idx }}">
             <svg
               width="10"
               height="10"
@@ -54,7 +55,7 @@
           {{ product_image | image_url: width: 433, height: 444 | image_tag: alt: product_desc }}
         </div>
         {% comment %} product popup {% endcomment %}
-        <div class="product-popup__container" data-index="{{ forloop.index0 }}">
+        <div class="product-popup__container" data-index="{{ idx }}">
           <div class="product-popup__window">
             <div class="exit-btn-wrapper">
               <button class="product-popup__exit">
@@ -95,19 +96,18 @@
               <div class="product-popup__sizepicker">
                 <h4>Size</h4>
                 <div class="sizepicker">
-                  <div class="toggle-sizepicker" data-index="{{ forloop.index0 }}">
+                  <div class="toggle-sizepicker" data-index="{{ idx }}">
                     <p>Choose your size</p>
-                    <span class="arrow">
+                    <span class="arrow" data-index="{{ idx }}">
                       <img
                         src="{{ 'icon-sizepicker.svg' | asset_url}}"
                         width="16"
                         height="10"
                         alt=""
-                        data-index="{{ forloop.index0 }}"
                       >
                     </span>
                   </div>
-                  <div class="sizepicker-menu" data-index="{{ forloop.index0 }}">
+                  <div class="sizepicker-menu" data-index="{{ idx }}">
                     <ul>
                       {% for size in product_sizes %}
                         <li>{{ size }}</li>

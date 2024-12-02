@@ -55,7 +55,7 @@ root.style.setProperty("--radio-choice-clr-2", colorChoice2);
 // sizepicker open / close
 const toggleSizepickers = document.querySelectorAll(".toggle-sizepicker");
 // const sizepickerTitles = document.querySelectorAll(".sizepicker p");
-const sizepickerIcons = document.querySelectorAll(".sizepicker .arrow img");
+const sizepickerIcons = document.querySelectorAll(".sizepicker .arrow");
 const sizepickerMenus = document.querySelectorAll(
   ".sizepicker .sizepicker-menu",
 );

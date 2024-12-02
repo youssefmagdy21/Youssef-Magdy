@@ -294,7 +294,7 @@
 
   transition: transform ease-in-out 300ms;
 }
-.toggle-sizepicker .arrow > img.active {
+.toggle-sizepicker .arrow.active > img {
   transform: rotate(180deg);
 }
 .sizepicker-menu {
