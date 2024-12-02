@@ -31,7 +31,7 @@ function closePopup() {
   document.body.style.overflowY = "visible";
 }
 
-if (!!productPopupContainerActive) {
+if (productPopupContainerActive) {
   const productPopupWindowActive = productPopupContainerActive.querySelector(
     ".product-popup__window",
   );
