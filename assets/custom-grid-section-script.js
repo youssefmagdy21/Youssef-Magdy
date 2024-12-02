@@ -17,7 +17,7 @@ const productPopupExitActive = productPopupContainerActive.querySelector(
 
 // open popup screen for selected product
 function openPopup(e) {
-  const index = e.target.dataset.index;
+  const index = e.currentTarget.dataset.index;
   productPopupContainers.forEach((ele) => {
     if (ele.dataset.index === index) {
       ele.classList.add("active");
