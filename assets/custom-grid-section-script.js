@@ -8,16 +8,17 @@ const productPopupContainerActive = document.querySelector(
   ".product-popup__container.active",
 );
 
-const productPopupWindowActive = productPopupContainerActive.querySelector(
+const productPopupWindowActive = productPopupContainerActive?.querySelector(
   ".product-popup__window",
 );
-const productPopupExitActive = productPopupContainerActive.querySelector(
+const productPopupExitActive = productPopupContainerActive?.querySelector(
   ".product-popup__exit",
 );
 
 // open popup screen for selected product
 function openPopup(e) {
   const index = e.currentTarget.dataset.index;
+  console.log(e, index);
   productPopupContainers.forEach((ele) => {
     if (ele.dataset.index === index) {
       ele.classList.add("active");
