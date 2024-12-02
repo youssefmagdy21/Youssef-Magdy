@@ -1,37 +1,53 @@
 const root = document.querySelector(":root");
-// popup
+
 const productPopupButtons = document.querySelectorAll(".product-popup__btn");
-const productPopupContainer = document.querySelector(
+const productPopupContainers = document.querySelectorAll(
   ".product-popup__container",
 );
-const productPopupWindow = document.querySelector(".product-popup__window");
-const productPopupExit = document.querySelector(".product-popup__exit");
+const productPopupContainerActive = document.querySelector(
+  ".product-popup__container.active",
+);
 
-function closePopup(e) {
-  productPopupContainer.classList.remove("active");
-  document.body.style.overflowY = "visible";
-}
+const productPopupWindowActive = productPopupContainerActive.querySelector(
+  ".product-popup__window",
+);
+const productPopupExitActive = productPopupContainerActive.querySelector(
+  ".product-popup__exit",
+);
+
+// open popup screen for selected product
 function openPopup(e) {
-  productPopupContainer.classList.add("active");
+  const index = e.target.dataset.index;
+  productPopupContainers.forEach((ele) => {
+    if (ele.dataset.index === index) {
+      ele.classList.add("active");
+      return;
+    }
+  });
   document.body.style.overflowY = "hidden";
-  console.log(e);
 }
 
 productPopupButtons.forEach((element) => {
   element.addEventListener("click", openPopup);
 });
 
+// close active popup screen
+function closePopup() {
+  productPopupContainerActive.classList.remove("active");
+  document.body.style.overflowY = "visible";
+}
+
+productPopupExitActive.addEventListener("click", closePopup);
+
 // close popup when clicked anywhere outside the popup window
-productPopupContainer.addEventListener("click", (e) => {
+productPopupContainerActive.addEventListener("click", (e) => {
   if (
-    e.target !== productPopupWindow &&
-    !productPopupWindow.contains(e.target)
+    e.target !== productPopupWindowActive &&
+    !productPopupWindowActive.contains(e.target)
   ) {
-    closePopup(e);
+    closePopup();
   }
 });
-
-productPopupExit.addEventListener("click", closePopup);
 
 // set color of selections from input value
 const colorChoice1 = document.querySelector("#color-1").value;
