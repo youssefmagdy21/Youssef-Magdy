@@ -25,6 +25,7 @@
           assign product_desc = selectedProduct.description | strip_html | strip_newlines
           assign product_colors = selectedProduct.options_by_name.Color.values
           assign product_sizes = selectedProduct.options_by_name.Size.values
+          assign product_variants = selectedProduct.variants
           assign idx = forloop.index0
         %}
         <div class="products-grid__item">
@@ -136,6 +137,7 @@
           </div>
         </div>
         {% comment %} product popup {% endcomment %}
+        {{ product_variants }}
       {% endfor %}
     </article>
   {% endif %}

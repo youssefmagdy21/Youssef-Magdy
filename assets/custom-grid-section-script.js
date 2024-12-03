@@ -126,3 +126,14 @@ popupForms.forEach((ele) => {
     }
   });
 });
+
+// let formData = {
+//   'items': [{
+//    'id': 36110175633573, >>> variant_id
+//    'quantity': 2
+//    }]
+//  };
+// headers: {
+//   'Content-Type': 'application/json'
+// },
+// body: JSON.stringify(formData)
