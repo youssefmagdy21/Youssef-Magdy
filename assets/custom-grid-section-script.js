@@ -118,39 +118,46 @@ sizepickerMenus.forEach((ele) => {
 // product add to cart form
 const popupForms = document.querySelectorAll(".product-popup__addtocart-form");
 
-// get all variants available for the selected product
+// function that takes a product index and returns all available variants for that product
 function getCurrentProductOptions(idx) {
   const productVariants = JSON.parse(
     document.querySelector(`.product-variants[data-index='${idx}']`)
       .textContent,
   );
-  console.log(productVariants);
   const productOptions = productVariants.map((ele) => {
     return { id: ele.id, variant: `${ele.option1}/${ele.option2}` };
   });
-
-  console.log(productOptions);
   return productOptions;
 }
 
-console.log(getCurrentProductOptions("3"));
-
-popupForms.forEach((ele) => {
-  ele.addEventListener("submit", async (e) => {
+popupForms.forEach((form) => {
+  const productOptions = getCurrentProductOptions(form.dataset.index);
+  console.log(productOptions);
+  console.log(form);
+  console.log(new FormData(form));
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
-    const formData = new FormData(ele);
-    console.log("form submited ", e);
-    for (const p of formData) {
-      console.log(p[0], " --> ", p[1]);
-    }
-    const colorVariantId = formData.get("color");
-    const sizeVariantId = selectedSize;
-    console.log(sizeVariantId);
-    formData.set("size", sizeVariantId);
-
-    const res = await fetch("/cart/add", {
-      method: "post",
-      body: formData,
-    });
+    const formData = new FormData(form);
+    const selectedColor = formData.get("color");
   });
 });
+
+// popupForms.forEach((form) => {
+//   form.addEventListener("submit", async (e) => {
+//     e.preventDefault();
+//     const formData = new FormData(form);
+//     console.log("form submited ", e);
+//     for (const p of formData) {
+//       console.log(p[0], " --> ", p[1]);
+//     }
+//     const colorVariantId = formData.get("color");
+//     const sizeVariantId = selectedSize;
+//     console.log(sizeVariantId);
+//     formData.set("size", sizeVariantId);
+
+//     const res = await fetch("/cart/add", {
+//       method: "post",
+//       body: formData,
+//     });
+//   });
+// });

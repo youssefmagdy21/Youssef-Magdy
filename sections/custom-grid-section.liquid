@@ -89,7 +89,7 @@
                 </p>
               </div>
             </div>
-            {% form 'product', selectedProduct, class: 'product-popup__addtocart-form', id: 'addtocart-form' %}
+            {% form 'product', selectedProduct, class: 'product-popup__addtocart-form', id: 'addtocart-form', data-index="{{ idx }}" %}
               {% comment %} required to add quantity for the form to work {% endcomment %}
               <input type="hidden" name="quantity" value="1">
             {% endform %}
@@ -100,7 +100,7 @@
                   {% for value in product_color.values %}
                     <label style="--selection-color-peak: {{ value }}">
                       {{ value }}
-                      <input type="radio" form="addtocart-form" name="value" value="{{ value | escape }}">
+                      <input type="radio" form="addtocart-form" name="color" value="{{ value | escape }}">
                     </label>
                   {% endfor %}
                   <div class="checked-item"></div>
@@ -127,7 +127,7 @@
                       {% for value in product_size.values %}
                         <li>
                           {{ value }}
-                          <input type="hidden" form="addtocart-form" name="size" value="{{ value | escape }}">
+                          {% comment %} <input type="hidden" form="addtocart-form" name="size" value="{{ value | escape }}"> {% endcomment %}
                         </li>
                       {% endfor %}
                     </ul>
