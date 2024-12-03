@@ -142,7 +142,7 @@ popupForms.forEach((ele) => {
       ],
     };
 
-    const res = await fetch("/cart/add", {
+    const res = await fetch(window.Shopify.routes.root + "cart/add.js", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
