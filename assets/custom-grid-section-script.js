@@ -117,15 +117,22 @@ sizepickerMenus.forEach((ele) => {
 
 // product add to cart form
 const popupForms = document.querySelectorAll(".product-popup__addtocart-form");
-const productVariants = JSON.parse(
-  document.querySelector("#product-variants").textContent,
-);
 
-console.log(productVariants);
-const productOptions = productVariants.map((ele) => {
-  return { id: ele.id, variant: `${ele.option1}/${ele.option2}` };
-});
-console.log(productOptions);
+// get all variants available for the selected product
+function getCurrentProductOptions(idx) {
+  const productVariants = JSON.parse(
+    document.querySelector(`.product-variants[data-index='${idx}']`)
+      .textContent,
+  );
+  console.log(productVariants);
+  const productOptions = productVariants.map((ele) => {
+    return { id: ele.id, variant: `${ele.option1}/${ele.option2}` };
+  });
+
+  console.log(productOptions);
+  return productOptions;
+}
+console.log(getCurrentProductOptions(3));
 
 popupForms.forEach((ele) => {
   ele.addEventListener("submit", async (e) => {
