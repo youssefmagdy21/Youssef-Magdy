@@ -134,7 +134,9 @@ popupForms.forEach((form) => {
   const productOptions = getCurrentProductOptions(form.dataset.index);
   console.log(productOptions);
   console.log(form);
-  console.log(new FormData(form));
+  for (const p of formData) {
+    console.log(p[0], " --> ", p[1]);
+  }
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     const formData = new FormData(form);
