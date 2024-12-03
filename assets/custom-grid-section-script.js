@@ -109,7 +109,7 @@ sizepickerMenus.forEach((ele) => {
   ele.addEventListener("click", (e) => {
     // sizepickerTitle.innerHTML = e.target.innerHTML;
     closeSizePicker(e);
-    console.log(e.currentTarget);
+    console.log(e.target, e);
   });
 });
 
@@ -120,5 +120,6 @@ popupForms.forEach((ele) => {
   ele.addEventListener("submit", (e) => {
     e.preventDefault();
     console.log("form submited ", e);
+    console.log(FormData(e.target));
   });
 });
