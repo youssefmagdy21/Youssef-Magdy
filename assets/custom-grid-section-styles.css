@@ -198,6 +198,7 @@
   border: black 1px solid;
 }
 .product-popup__colorpicker .colorpicker label {
+  height: 100%;
   flex: 1;
   padding: 0.625rem;
   padding-left: 0.9375rem;
