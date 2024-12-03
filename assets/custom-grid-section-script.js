@@ -131,10 +131,11 @@ function getCurrentProductOptions(idx) {
 }
 function getSelectedVariantID(selectedVariant, idx) {
   const productOptions = getCurrentProductOptions(idx);
+  console.log(productOptions);
   let selectedVariantID;
   productOptions.forEach((ele) => {
     if (ele.variant === selectedVariant) {
-      selectedVariantID = ele.variant;
+      selectedVariantID = ele.id;
       return;
     }
   });

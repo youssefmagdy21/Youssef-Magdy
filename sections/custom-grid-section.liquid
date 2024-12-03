@@ -130,7 +130,7 @@
                   <div class="sizepicker-menu" data-index="{{ idx }}">
                     <ul>
                       {% for value in product_size.values %}
-                        <li data-value="{{ value }}">
+                        <li data-value="{{ value | escape }}">
                           {{ value }}
                         </li>
                       {% endfor %}
