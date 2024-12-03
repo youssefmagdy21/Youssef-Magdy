@@ -125,7 +125,8 @@ function getCurrentProductOptions(idx) {
       .textContent,
   );
   const productOptions = productVariants.map((ele) => {
-    return { id: ele.id, variant: `${ele.option1}/${ele.option2}` };
+    const variant = ele.options.join("/");
+    return { id: ele.id, variant: variant };
   });
   return productOptions;
 }
