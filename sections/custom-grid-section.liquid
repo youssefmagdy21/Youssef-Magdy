@@ -23,11 +23,20 @@
           assign product_title = selectedProduct.title
           assign product_price = selectedProduct.price | money
           assign product_desc = selectedProduct.description | strip_html | strip_newlines
-          assign product_colors = selectedProduct.options_by_name.Color.values
-          assign product_sizes = selectedProduct.options_by_name.Size.values
+          assign product_color = selectedProduct.options_by_name.Color
+          assign product_size = selectedProduct.options_by_name.Size
           assign product_variants = selectedProduct.variants
           assign idx = forloop.index0
         %}
+        {% comment %}
+          {% for variant in product_variants -%}
+            {%- capture options -%}
+              {% for option in variant.options -%}
+                {{ option }}{%- unless forloop.last -%}/{%- endunless -%}
+              {%- endfor %}
+            {%- endcapture -%}
+          {%- endfor %}
+        {% endcomment %}
         <div class="products-grid__item">
           <button class="product-popup__btn" data-index="{{ idx }}">
             <svg
@@ -80,63 +89,74 @@
                 </p>
               </div>
             </div>
-            {% form 'product', selectedProduct, class: 'product-popup__addtocart-form' %}
-              <div class="wrapper">
-                <div class="product-popup__colorpicker">
-                  <h4>Color</h4>
-                  <div class="colorpicker">
-                    {% for color in product_colors %}
-                      <label style="--selection-color-peak: {{ color }}">
-                        {{ color }}
-                        <input type="radio" name="color" value="{{ color.id }}">
-                      </label>
-                    {% endfor %}
-                    <div class="checked-item"></div>
-                  </div>
+            {% form 'product', selectedProduct, class: 'product-popup__addtocart-form', id: 'addtocart-form' %}
+              {% comment %} required to add quantity for the form to work {% endcomment %}
+              <input type="hidden" name="quantity" value="1">
+            {% endform %}
+            <div class="wrapper">
+              <div class="product-popup__colorpicker">
+                <h4>Color</h4>
+                <div class="colorpicker">
+                  {% for value in product_color.values %}
+                    <label style="--selection-color-peak: {{ value }}">
+                      {{ value }}
+                      <input type="radio" form="addtocart-form" name="value" value="{{ value | escape }}">
+                    </label>
+                  {% endfor %}
+                  <div class="checked-item"></div>
                 </div>
-                <div class="product-popup__sizepicker">
-                  <h4>Size</h4>
-                  <div class="sizepicker">
-                    <div class="toggle-sizepicker" data-index="{{ idx }}">
-                      <p>Choose your size</p>
-                      <span class="arrow">
-                        <img
-                          src="{{ 'icon-sizepicker.svg' | asset_url}}"
-                          width="16"
-                          height="10"
-                          alt=""
-                          data-index="{{ idx }}"
-                        >
-                      </span>
-                    </div>
-                    <div class="sizepicker-menu" data-index="{{ idx }}">
-                      <ul>
-                        {% for size in product_sizes %}
-                          <li data-value="{{ size.id }}">{{ size }}</li>
-                        {% endfor %}
-                      </ul>
-                    </div>
+              </div>
+
+              <div class="product-popup__sizepicker">
+                <h4>Size</h4>
+                <div class="sizepicker">
+                  <div class="toggle-sizepicker" data-index="{{ idx }}">
+                    <p>Choose your size</p>
+                    <span class="arrow">
+                      <img
+                        src="{{ 'icon-sizepicker.svg' | asset_url}}"
+                        width="16"
+                        height="10"
+                        alt=""
+                        data-index="{{ idx }}"
+                      >
+                    </span>
+                  </div>
+                  <div class="sizepicker-menu" data-index="{{ idx }}">
+                    <ul>
+                      {% for value in product_size.values %}
+                        <li>
+                          {{ value }}
+                          <input type="hidden" form="addtocart-form" name="size" value="{{ value | escape }}">
+                        </li>
+                      {% endfor %}
+                    </ul>
                   </div>
                 </div>
               </div>
-              <button type="submit" class="btn product-popup__addtocart">
-                <span>add to cart</span>
-                <svg
-                  width="27"
-                  height="12"
-                  viewBox="0 0 27 12"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M1 5.25C0.585786 5.25 0.25 5.58579 0.25 6C0.25 6.41421 0.585786 6.75 1 6.75L1 5.25ZM26.5303 6.53033C26.8232 6.23743 26.8232 5.76256 26.5303 5.46967L21.7574 0.696697C21.4645 0.403804 20.9896 0.403804 20.6967 0.696697C20.4038 0.989591 20.4038 1.46446 20.6967 1.75736L24.9393 6L20.6967 10.2426C20.4038 10.5355 20.4038 11.0104 20.6967 11.3033C20.9896 11.5962 21.4645 11.5962 21.7574 11.3033L26.5303 6.53033ZM1 6.75L26 6.75L26 5.25L1 5.25L1 6.75Z"
-                    fill="#ffffff"/>
-                </svg>
-              </button>
-            {% endform %}
+            </div>
+            <button type="submit" form="addtocart-form" class="btn product-popup__addtocart">
+              <span>add to cart</span>
+              <svg
+                width="27"
+                height="12"
+                viewBox="0 0 27 12"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 5.25C0.585786 5.25 0.25 5.58579 0.25 6C0.25 6.41421 0.585786 6.75 1 6.75L1 5.25ZM26.5303 6.53033C26.8232 6.23743 26.8232 5.76256 26.5303 5.46967L21.7574 0.696697C21.4645 0.403804 20.9896 0.403804 20.6967 0.696697C20.4038 0.989591 20.4038 1.46446 20.6967 1.75736L24.9393 6L20.6967 10.2426C20.4038 10.5355 20.4038 11.0104 20.6967 11.3033C20.9896 11.5962 21.4645 11.5962 21.7574 11.3033L26.5303 6.53033ZM1 6.75L26 6.75L26 5.25L1 5.25L1 6.75Z"
+                  fill="#ffffff"/>
+              </svg>
+            </button>
           </div>
         </div>
         {% comment %} product popup {% endcomment %}
+        <script type="application/json" id="product-variants">
+          {
+            "arr": "{{ product_variants }}"
+          }
+        </script>
       {% endfor %}
     </article>
   {% endif %}
