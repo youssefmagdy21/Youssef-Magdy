@@ -123,9 +123,7 @@ const productVariants = JSON.parse(
 
 console.log(productVariants);
 const productOptions = productVariants.map((ele) => {
-  ele.options.map((op) => {
-    return { id: ele.id, variant: `${op[0]}/${op[1]}` };
-  });
+  return { id: ele.id, variant: `${ele.option1}/${ele.option2}` };
 });
 console.log(productOptions);
 
