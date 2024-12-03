@@ -143,7 +143,7 @@ function getSelectedVariantID(selectedVariant, idx) {
   return selectedVariantID;
 }
 popupForms.forEach((form) => {
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const formData = new FormData(form);
     const selectedColor = formData.get("color");
@@ -161,13 +161,13 @@ popupForms.forEach((form) => {
       console.log(p[0], " --> ", p[1]);
     }
 
-    // const res = await fetch("/cart/add", {
-    //   method: "post",
-    //   body: formData,
-    // });
-    // if (res.ok) {
-    //   console.log("ADDED");
-    // }
+    const res = await fetch("/cart/add", {
+      method: "post",
+      body: formData,
+    });
+    if (res.ok) {
+      console.log("ADDED");
+    }
   });
 });
 
