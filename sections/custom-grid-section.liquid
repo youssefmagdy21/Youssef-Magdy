@@ -137,7 +137,10 @@
           </div>
         </div>
         {% comment %} product popup {% endcomment %}
-        {{ product_variants }}
+        {% for variant in product_variants %}
+          {{ variant.id }}
+          {{ variant.title }}
+        {% endfor %}
       {% endfor %}
     </article>
   {% endif %}
