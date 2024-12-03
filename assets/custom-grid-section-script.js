@@ -120,6 +120,6 @@ popupForms.forEach((ele) => {
   ele.addEventListener("submit", (e) => {
     e.preventDefault();
     console.log("form submited ", e);
-    console.log(new FormData(e.target));
+    console.log(new FormData(ele));
   });
 });
