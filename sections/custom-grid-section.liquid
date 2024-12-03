@@ -130,9 +130,8 @@
                   <div class="sizepicker-menu" data-index="{{ idx }}">
                     <ul>
                       {% for value in product_size.values %}
-                        <li>
+                        <li data-value="{{ value }}">
                           {{ value }}
-                          {% comment %} <input type="hidden" form="addtocart-form" name="size" value="{{ value | escape }}"> {% endcomment %}
                         </li>
                       {% endfor %}
                     </ul>

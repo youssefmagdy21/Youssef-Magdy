@@ -129,18 +129,44 @@ function getCurrentProductOptions(idx) {
   });
   return productOptions;
 }
+function getSelectedVariantID(selectedVariant, idx) {
+  const productOptions = getCurrentProductOptions(idx);
+  let selectedVariantID;
+  productOptions.forEach((ele) => {
+    if (ele.variant === selectedVariant) {
+      selectedVariantID = ele.variant;
+      return;
+    }
+  });
 
+  return selectedVariantID;
+}
 popupForms.forEach((form) => {
-  const productOptions = getCurrentProductOptions(form.dataset.index);
-  console.log(productOptions);
-  console.log(form);
-  for (const p of new FormData(form)) {
-    console.log(p[0], " --> ", p[1]);
-  }
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     const formData = new FormData(form);
     const selectedColor = formData.get("color");
+    const selectedVariant = `${selectedSize}/${selectedColor}`;
+    const selectedVariantID = getSelectedVariantID(
+      selectedVariant,
+      form.dataset.index,
+    );
+    formData.set("size", selectedSize);
+    formData.set("id", selectedVariantID);
+
+    console.log(selectedVariant, selectedVariantID);
+    console.log("form submited ", e);
+    for (const p of formData) {
+      console.log(p[0], " --> ", p[1]);
+    }
+
+    // const res = await fetch("/cart/add", {
+    //   method: "post",
+    //   body: formData,
+    // });
+    // if (res.ok) {
+    //   console.log("ADDED");
+    // }
   });
 });
 
