@@ -52,7 +52,7 @@
               />
             </svg>
           </button>
-          {{ product_image | image_url: width: 433, height: 444 | image_tag: alt: product_desc }}
+          {{ product_image | image_url: width: 433, height: 444 | image_tag: alt: product_image.alt }}
         </div>
         {% comment %} product popup {% endcomment %}
         <div class="product-popup__container" data-index="{{ idx }}">
@@ -69,7 +69,7 @@
             </div>
             <div class="product-popup__content">
               <div class="product-popup__image">
-                {{ product_image | image_url: width: 120, height: 140 | image_tag: alt: product_desc }}
+                {{ product_image | image_url: width: 120, height: 140 | image_tag: alt: product_image.alt }}
               </div>
               <div class="product-popup__text">
                 <h3>{{ product_title }}</h3>
@@ -79,58 +79,60 @@
                 </p>
               </div>
             </div>
-            <div class="wrapper">
-              <div class="product-popup__colorpicker">
-                <h4>Color</h4>
-                <div class="colorpicker">
-                  {% for color in product_colors %}
-                    <label style="--selection-color-peak: {{ color }}">
-                      {{ color }}
-                      <input type="radio" name="color" value="{{ color }}">
-                    </label>
-                  {% endfor %}
-                  <div class="checked-item"></div>
-                </div>
-              </div>
-              <div class="product-popup__sizepicker">
-                <h4>Size</h4>
-                <div class="sizepicker">
-                  <div class="toggle-sizepicker" data-index="{{ idx }}">
-                    <p>Choose your size</p>
-                    <span class="arrow">
-                      <img
-                        src="{{ 'icon-sizepicker.svg' | asset_url}}"
-                        width="16"
-                        height="10"
-                        alt=""
-                        data-index="{{ idx }}"
-                      >
-                    </span>
-                  </div>
-                  <div class="sizepicker-menu" data-index="{{ idx }}">
-                    <ul>
-                      {% for size in product_sizes %}
-                        <li>{{ size }}</li>
-                      {% endfor %}
-                    </ul>
+            {% form 'product', selectedProduct, class: 'product-popup__addtocart-form' %}
+              <div class="wrapper">
+                <div class="product-popup__colorpicker">
+                  <h4>Color</h4>
+                  <div class="colorpicker">
+                    {% for color in product_colors %}
+                      <label style="--selection-color-peak: {{ color }}">
+                        {{ color }}
+                        <input type="radio" name="color" value="{{ color.id }}">
+                      </label>
+                    {% endfor %}
+                    <div class="checked-item"></div>
                   </div>
                 </div>
+                <div class="product-popup__sizepicker">
+                  <h4>Size</h4>
+                  <div class="sizepicker">
+                    <div class="toggle-sizepicker" data-index="{{ idx }}">
+                      <p>Choose your size</p>
+                      <span class="arrow">
+                        <img
+                          src="{{ 'icon-sizepicker.svg' | asset_url}}"
+                          width="16"
+                          height="10"
+                          alt=""
+                          data-index="{{ idx }}"
+                        >
+                      </span>
+                    </div>
+                    <div class="sizepicker-menu" data-index="{{ idx }}">
+                      <ul>
+                        {% for size in product_sizes %}
+                          <li data-value="{{ size.id }}">{{ size }}</li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-            <button class="btn product-popup__addtocart">
-              <span>add to cart</span>
-              <svg
-                width="27"
-                height="12"
-                viewBox="0 0 27 12"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M1 5.25C0.585786 5.25 0.25 5.58579 0.25 6C0.25 6.41421 0.585786 6.75 1 6.75L1 5.25ZM26.5303 6.53033C26.8232 6.23743 26.8232 5.76256 26.5303 5.46967L21.7574 0.696697C21.4645 0.403804 20.9896 0.403804 20.6967 0.696697C20.4038 0.989591 20.4038 1.46446 20.6967 1.75736L24.9393 6L20.6967 10.2426C20.4038 10.5355 20.4038 11.0104 20.6967 11.3033C20.9896 11.5962 21.4645 11.5962 21.7574 11.3033L26.5303 6.53033ZM1 6.75L26 6.75L26 5.25L1 5.25L1 6.75Z"
-                  fill="#ffffff"/>
-              </svg>
-            </button>
+              <button type="submit" class="btn product-popup__addtocart">
+                <span>add to cart</span>
+                <svg
+                  width="27"
+                  height="12"
+                  viewBox="0 0 27 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1 5.25C0.585786 5.25 0.25 5.58579 0.25 6C0.25 6.41421 0.585786 6.75 1 6.75L1 5.25ZM26.5303 6.53033C26.8232 6.23743 26.8232 5.76256 26.5303 5.46967L21.7574 0.696697C21.4645 0.403804 20.9896 0.403804 20.6967 0.696697C20.4038 0.989591 20.4038 1.46446 20.6967 1.75736L24.9393 6L20.6967 10.2426C20.4038 10.5355 20.4038 11.0104 20.6967 11.3033C20.9896 11.5962 21.4645 11.5962 21.7574 11.3033L26.5303 6.53033ZM1 6.75L26 6.75L26 5.25L1 5.25L1 6.75Z"
+                    fill="#ffffff"/>
+                </svg>
+              </button>
+            {% endform %}
           </div>
         </div>
         {% comment %} product popup {% endcomment %}

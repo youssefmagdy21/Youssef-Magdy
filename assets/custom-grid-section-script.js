@@ -45,13 +45,6 @@ productPopupContainers.forEach((ele) => {
   });
 });
 
-// set color of selections from input value
-// const colorChoice1 = document.querySelector("#color-1").value;
-// const colorChoice2 = document.querySelector("#color-2").value;
-
-// root.style.setProperty("--radio-choice-clr-1", colorChoice1);
-// root.style.setProperty("--radio-choice-clr-2", colorChoice2);
-
 // sizepicker open / close
 const toggleSizepickers = document.querySelectorAll(".toggle-sizepicker");
 // const sizepickerTitles = document.querySelectorAll(".sizepicker p");
@@ -116,5 +109,16 @@ sizepickerMenus.forEach((ele) => {
   ele.addEventListener("click", (e) => {
     // sizepickerTitle.innerHTML = e.target.innerHTML;
     closeSizePicker(e);
+    console.log(e.currentTarget);
+  });
+});
+
+// product add to cart form
+const popupForms = document.querySelectorAll(".product-popup__addtocart-form");
+
+popupForms.forEach((ele) => {
+  ele.addEventListener("submit", (e) => {
+    e.preventDefault();
+    console.log("form submited ", e);
   });
 });
