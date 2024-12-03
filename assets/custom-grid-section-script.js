@@ -121,8 +121,7 @@ const popupForms = document.querySelectorAll(".product-popup__addtocart-form");
 // get all variants available for the selected product
 function getCurrentProductOptions(idx) {
   const productVariants = JSON.parse(
-    document.querySelector(`.product-variants[data-index='${idx}']`)
-      .textContent,
+    document.querySelector(`.product-variants[data-index=${idx}]`).textContent,
   );
   console.log(productVariants);
   const productOptions = productVariants.map((ele) => {
@@ -132,7 +131,8 @@ function getCurrentProductOptions(idx) {
   console.log(productOptions);
   return productOptions;
 }
-console.log(getCurrentProductOptions(3));
+
+console.log(getCurrentProductOptions("3"));
 
 popupForms.forEach((ele) => {
   ele.addEventListener("submit", async (e) => {
