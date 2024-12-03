@@ -27,7 +27,7 @@
           assign product_color = selectedProduct.options_by_name.Color
           assign product_size = selectedProduct.options_by_name.Size
           assign product_variants = selectedProduct.variants
-          assign form_id = 'addtocart-form_{{ product_obj.id }}'
+          assign form_id = 'addtocart-form_' | append: selectedProduct.id
           assign idx = forloop.index0
         %}
 
