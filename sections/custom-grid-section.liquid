@@ -140,6 +140,11 @@
         {% for variant in product_variants %}
           {{ variant.id }}
           {{ variant.title }}
+          {% for option in variant.options %}
+            {{ option.id }}
+            {{ option.name }}
+            {{ option.variant }}
+          {% endfor %}
         {% endfor %}
       {% endfor %}
     </article>
