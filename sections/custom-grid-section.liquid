@@ -153,7 +153,7 @@
         </div>
         {% comment %} product popup {% endcomment %}
         <script type="application/json" id="product-variants">
-          {{ product_variants }}
+          {{ product_variants | json }}
         </script>
       {% endfor %}
     </article>
