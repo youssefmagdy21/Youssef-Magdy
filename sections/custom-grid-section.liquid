@@ -19,6 +19,7 @@
     <article class="products-grid">
       {% for selectedProduct in section.settings.selectedProducts %}
         {% liquid
+          assign product_obj = selectedProduct
           assign product_image = selectedProduct.featured_image
           assign product_title = selectedProduct.title
           assign product_price = selectedProduct.price | money
@@ -28,15 +29,6 @@
           assign product_variants = selectedProduct.variants
           assign idx = forloop.index0
         %}
-        {% comment %}
-          {% for variant in product_variants -%}
-            {%- capture options -%}
-              {% for option in variant.options -%}
-                {{ option }}{%- unless forloop.last -%}/{%- endunless -%}
-              {%- endfor %}
-            {%- endcapture -%}
-          {%- endfor %}
-        {% endcomment %}
         <div class="products-grid__item">
           <button class="product-popup__btn" data-index="{{ idx }}">
             <svg
@@ -90,7 +82,7 @@
               </div>
             </div>
             {% form 'product',
-              selectedProduct,
+              product_obj,
               class: 'product-popup__addtocart-form',
               id: 'addtocart-form',
               data-index: idx
