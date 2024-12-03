@@ -129,25 +129,11 @@ popupForms.forEach((ele) => {
     const colorVariantId = formData.get("color");
     const sizeVariantId = selectedSize;
     console.log(sizeVariantId);
-    const submittedData = {
-      items: [
-        {
-          id: colorVariantId,
-          quantity: 1,
-        },
-        {
-          id: sizeVariantId,
-          quantity: 1,
-        },
-      ],
-    };
+    formData.set("size", sizeVariantId);
 
-    const res = await fetch(window.Shopify.routes.root + "/cart/add", {
+    const res = await fetch("/cart/add", {
       method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(submittedData),
+      body: formData,
     });
   });
 });
