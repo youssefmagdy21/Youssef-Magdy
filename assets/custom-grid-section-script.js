@@ -168,7 +168,7 @@ popupForms.forEach((form) => {
     });
     if (res.ok) {
       console.log("ADDED");
-      window.location.replace("/cart");
+      window.location.assign("/cart");
     }
   });
 });
