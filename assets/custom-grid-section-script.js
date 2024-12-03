@@ -105,11 +105,13 @@ sizepickerIcons.forEach((ele) => {
   });
 });
 
+let selectedSize;
 sizepickerMenus.forEach((ele) => {
   ele.addEventListener("click", (e) => {
     // sizepickerTitle.innerHTML = e.target.innerHTML;
     closeSizePicker(e);
     console.log(e.target, e);
+    selectedSize = e.target.dataset.value;
   });
 });
 
@@ -117,23 +119,35 @@ sizepickerMenus.forEach((ele) => {
 const popupForms = document.querySelectorAll(".product-popup__addtocart-form");
 
 popupForms.forEach((ele) => {
-  ele.addEventListener("submit", (e) => {
+  ele.addEventListener("submit", async (e) => {
     e.preventDefault();
-    console.log("form submited ", e);
     const formData = new FormData(ele);
+    console.log("form submited ", e);
     for (const p of formData) {
       console.log(p[0], " --> ", p[1]);
     }
+    const colorVariantId = formData.get("color");
+    const sizeVariantId = selectedSize;
+    console.log(sizeVariantId);
+    const submittedData = {
+      items: [
+        {
+          id: colorVariantId,
+          quantity: 1,
+        },
+        {
+          id: sizeVariantId,
+          quantity: 1,
+        },
+      ],
+    };
+
+    const res = await fetch("/cart/add", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(submittedData),
+    });
   });
 });
-
-// let formData = {
-//   'items': [{
-//    'id': 36110175633573, >>> variant_id
-//    'quantity': 2
-//    }]
-//  };
-// headers: {
-//   'Content-Type': 'application/json'
-// },
-// body: JSON.stringify(formData)
