@@ -27,8 +27,10 @@
           assign product_color = selectedProduct.options_by_name.Color
           assign product_size = selectedProduct.options_by_name.Size
           assign product_variants = selectedProduct.variants
+          assign form_id = 'addtocart-form_{{ product_obj.id }}'
           assign idx = forloop.index0
         %}
+
         <div class="products-grid__item">
           <button class="product-popup__btn" data-index="{{ idx }}">
             <svg
@@ -81,7 +83,7 @@
                 </p>
               </div>
             </div>
-            {% form 'product', product_obj, class: 'product-popup__addtocart-form', data-index: idx %}
+            {% form 'product', product_obj, class: 'product-popup__addtocart-form', id: form_id, data-index: idx %}
               {% comment %} required to add quantity for the form to work {% endcomment %}
               <input type="hidden" name="quantity" value="1">
             {% endform %}
@@ -92,7 +94,7 @@
                   {% for value in product_color.values %}
                     <label style="--selection-color-peak: {{ value }}">
                       {{ value }}
-                      <input type="radio" form="addtocart-form" name="color" value="{{ value | escape }}">
+                      <input type="radio" form="{{ form_id }}" name="color" value="{{ value | escape }}">
                     </label>
                   {% endfor %}
                   <div class="checked-item"></div>
@@ -126,7 +128,7 @@
                 </div>
               </div>
             </div>
-            <button type="submit" form="addtocart-form" class="btn product-popup__addtocart">
+            <button type="submit" form="{{ form_id }}" class="btn product-popup__addtocart">
               <span>add to cart</span>
               <svg
                 width="27"
