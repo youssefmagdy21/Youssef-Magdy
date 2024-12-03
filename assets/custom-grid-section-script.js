@@ -119,8 +119,9 @@ sizepickerMenus.forEach((ele) => {
 const popupForms = document.querySelectorAll(".product-popup__addtocart-form");
 const productVariants = JSON.parse(
   document.querySelector("#product-variants").textContent,
-).arr;
+);
 
+console.log(productVariants);
 const productOptions = productVariants.map((ele) => {
   ele.options.map((op) => {
     return { id: ele.id, variant: `${op[0]}/${op[1]}` };

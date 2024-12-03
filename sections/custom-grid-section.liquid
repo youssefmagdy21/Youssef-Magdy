@@ -153,9 +153,7 @@
         </div>
         {% comment %} product popup {% endcomment %}
         <script type="application/json" id="product-variants">
-          {
-            "arr": "{{ product_variants }}"
-          }
+          {{ product_variants }}
         </script>
       {% endfor %}
     </article>
