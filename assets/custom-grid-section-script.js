@@ -60,6 +60,7 @@ let isMenuOpen = false;
 // function that takes index of current sizepicker and opens the sizepicker menu
 function openSizepicker(index) {
   isMenuOpen = true;
+  // reset selected size state and sizepicker title to default
   currentlySelectedSize.resetSelectedSize();
   changeSizePickerTitle();
   sizepickerMenus.forEach((ele) => {
@@ -94,7 +95,7 @@ function closeSizePicker() {
     ele.classList.remove("active");
   });
 }
-// function that takes index and value of current size and changes the sizepicker title
+// function to change all sizepicker titles to the selected size if any
 function changeSizePickerTitle(value) {
   const defaultTitle = "Choose your size";
   document.querySelectorAll(`.toggle-sizepicker p`).forEach((ele) => {
@@ -113,7 +114,7 @@ toggleSizepickers.forEach((ele) => {
   ele.addEventListener("click", () => openSizepicker(ele.dataset.index));
 });
 // select all sizepickers toggle icons and add event listeners to open sizepicker menu
-// and to close the menu if open
+//  and to close the menu if open
 const sizepickerIcons = document.querySelectorAll(".sizepicker .arrow img");
 sizepickerIcons.forEach((ele) => {
   ele.addEventListener("click", (e) => {
