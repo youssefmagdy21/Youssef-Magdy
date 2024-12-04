@@ -352,7 +352,7 @@
   margin-top: auto;
 }
 .product-popup__addtocart:disabled {
-  cursor: progress;
+  cursor: wait;
 }
 .product-popup__addtocart::before {
   background-color: var(--clr-btn-secondary);

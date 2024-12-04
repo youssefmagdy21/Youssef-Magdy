@@ -208,44 +208,52 @@ popupForms.forEach((form) => {
     e.preventDefault();
     const submitBtn = form.elements["submit-btn"];
     submitBtn.disabled = true;
-    submitBtn.innerHTML = "⏳Adding item to cart⏳";
     const formData = new FormData(form);
     const selectedColor = formData.get("color");
     const selectedSize = currentlySelectedSize.getSelectedSize();
-    const selectedVariant = `${selectedSize}/${selectedColor}`;
-    const selectedVariantID = getSelectedVariantID(
-      selectedVariant,
-      form.dataset.index,
-    );
-    formData.set("size", selectedSize);
-    formData.set("id", selectedVariantID);
-    try {
-      const res = await fetch("/cart/add", {
-        method: "post",
-        body: formData,
-      });
-      if (!res.ok) {
-        throw new Error("something went wrong...");
-      }
-      // add and extra product automatically for M/Black products
-      if (selectedVariant === "M/Black") {
-        const id = getExtraProductVariantID(selectedVariant);
-        const extraProductRes = await addExtraProduct(id);
-        if (!extraProductRes.ok) {
-          throw new Error("something went wrong...");
+    if (!selectedColor || !selectedSize) {
+      const defaultBtnContent = submitBtn.innerHTML;
+      submitBtn.innerHTML = "🔁1 or more options missing🔁";
+      setTimeout(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = defaultBtnContent;
+      }, 500);
+    } else {
+      const selectedVariant = `${selectedSize}/${selectedColor}`;
+      const selectedVariantID = getSelectedVariantID(
+        selectedVariant,
+        form.dataset.index,
+      );
+      formData.set("size", selectedSize);
+      formData.set("id", selectedVariantID);
+      submitBtn.innerHTML = "⏳Adding item to cart⏳";
+      try {
+        const res = await fetch("/cart/add", {
+          method: "post",
+          body: formData,
+        });
+        if (!res.ok) {
+          throw new Error("something went wrong");
         }
+        // add and extra product automatically for M/Black products
+        if (selectedVariant === "M/Black") {
+          const id = getExtraProductVariantID(selectedVariant);
+          const extraProductRes = await addExtraProduct(id);
+          if (!extraProductRes.ok) {
+            throw new Error("something went wrong");
+          }
+        }
+        // redirect to cart after adding a product from the popup
+        submitBtn.innerHTML = "✅redirecting to cart✅";
+        setTimeout(() => {
+          window.location.assign("/cart");
+        }, 1000);
+      } catch (error) {
+        submitBtn.innerHTML = `❌${error}❌`;
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
       }
-      // redirect to cart after adding a product from the popup
-      submitBtn.innerHTML = "✅redirecting to cart✅";
-      setTimeout(() => {
-        window.location.assign("/cart");
-      }, 1000);
-    } catch (error) {
-      submitBtn.innerHTML = "❌something went wrong❌";
-      console.error(error);
-      setTimeout(() => {
-        window.location.reload();
-      }, 1000);
     }
   });
 });
