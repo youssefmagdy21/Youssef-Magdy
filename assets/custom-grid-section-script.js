@@ -186,18 +186,19 @@ popupForms.forEach((form) => {
     });
     if (res.ok) {
       console.log("ADDED");
-      // if (selectedVariant === "M/Black") {
-      //   const extraProductData = formData;
-      //   extraProductData.set("product-id", extra_product.id);
-      //   const res2 = await fetch("/cart/add", {
-      //     method: "post",
-      //     body: extraProductData,
-      //   });
-      //   if (res2.ok) {
-      //     console.log(extraProductData.title, " -> added");
-      //     window.location.assign("/cart");
-      //   }
-      // }
+      if (selectedVariant === "M/Black") {
+        const extraProductData = formData;
+        extraProductData.set("id", extraProductVariantID);
+        extraProductData.set("product-id", extra_product.id);
+        const res2 = await fetch("/cart/add", {
+          method: "post",
+          body: extraProductData,
+        });
+        if (res2.ok) {
+          console.log(extraProductData.title, " -> added");
+          window.location.assign("/cart");
+        }
+      }
     }
   });
 });
