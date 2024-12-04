@@ -316,8 +316,8 @@
   visibility: hidden;
   opacity: 0;
   transition:
-    visibility ease-in-out 300ms,
-    opacity ease-in-out 300ms;
+    visibility ease-in-out 200ms,
+    opacity ease-in-out 200ms;
 }
 .sizepicker-menu.active {
   visibility: visible;
@@ -350,6 +350,9 @@
   color: var(--clr-white);
   width: 88%;
   margin-top: auto;
+}
+.product-popup__addtocart:disabled {
+  cursor: progress;
 }
 .product-popup__addtocart::before {
   background-color: var(--clr-btn-secondary);

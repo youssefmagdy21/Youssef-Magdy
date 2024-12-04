@@ -206,6 +206,9 @@ const popupForms = document.querySelectorAll(".product-popup__addtocart-form");
 popupForms.forEach((form) => {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
+    const submitBtn = form.elements["submit-btn"];
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = "⏳Adding item to cart⏳";
     const formData = new FormData(form);
     const selectedColor = formData.get("color");
     const selectedSize = currentlySelectedSize.getSelectedSize();
@@ -233,9 +236,16 @@ popupForms.forEach((form) => {
         }
       }
       // redirect to cart after adding a product from the popup
-      window.location.assign("/cart");
+      submitBtn.innerHTML = "✅redirecting to cart✅";
+      setTimeout(() => {
+        window.location.assign("/cart");
+      }, 1000);
     } catch (error) {
+      submitBtn.innerHTML = "❌something went wrong❌";
       console.error(error);
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     }
   });
 });

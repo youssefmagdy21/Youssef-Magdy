@@ -61,7 +61,7 @@
           </button>
           {{ product_image | image_url: width: 433, height: 444 | image_tag: alt: product_image.alt }}
         </div>
-        {% comment %} product popup {% endcomment %}
+        {% comment %} product popup screen {% endcomment %}
         <div class="product-popup__container" data-index="{{ idx }}">
           <div class="product-popup__window">
             <div class="exit-btn-wrapper">
@@ -131,7 +131,7 @@
                 </div>
               </div>
             </div>
-            <button type="submit" form="{{ form_id }}" class="btn product-popup__addtocart">
+            <button type="submit" name="submit-btn" form="{{ form_id }}" class="btn product-popup__addtocart">
               <span>add to cart</span>
               <svg
                 width="27"
@@ -147,7 +147,7 @@
             </button>
           </div>
         </div>
-        {% comment %} product popup {% endcomment %}
+        {% comment %} product popup screen {% endcomment %}
         <script type="application/json" class="product-variants" data-index="{{ idx }}">
           {{ product_variants | json }}
         </script>
