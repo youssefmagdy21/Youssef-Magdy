@@ -270,17 +270,21 @@
 .product-popup__sizepicker .sizepicker .toggle-sizepicker {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   cursor: pointer;
   height: 100%;
-  padding-left: 0.875rem;
+  /* padding-left: 0.875rem; */
 }
 .product-popup__sizepicker .sizepicker .toggle-sizepicker.active {
   cursor: default;
 }
 .toggle-sizepicker p {
+  --text-align: right;
   letter-spacing: calc(-0.02 * 1rem);
   line-height: 1;
+  width: 100%;
+  padding: 0 0.875rem;
+  text-align: var(--text-align);
 }
 .toggle-sizepicker .arrow {
   border-left: black 1px solid;
@@ -290,6 +294,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-left: auto;
 }
 .toggle-sizepicker .arrow > img {
   cursor: pointer;

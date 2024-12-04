@@ -29,7 +29,6 @@ function closePopup() {
     ele.classList.remove("active");
   });
   document.body.style.overflowY = "visible";
-  currentlySelectedSize.resetSelectedSize();
 }
 // select all product popup buttons and add event listeners to open popup
 const productPopupButtons = document.querySelectorAll(".product-popup__btn");
@@ -61,11 +60,8 @@ let isMenuOpen = false;
 // function that takes index of current sizepicker and opens the sizepicker menu
 function openSizepicker(index) {
   isMenuOpen = true;
-  // const index = e.currentTarget.dataset.index;
   currentlySelectedSize.resetSelectedSize();
-  document.querySelector(
-    `.toggle-sizepicker[data-index='${index}'] p`,
-  ).innerHTML = "Choose your size";
+  changeSizePickerTitle(index);
   sizepickerMenus.forEach((ele) => {
     if (ele.dataset.index === index) {
       ele.classList.add("active");
@@ -98,6 +94,20 @@ function closeSizePicker() {
     ele.classList.remove("active");
   });
 }
+// function that takes index and value of current size and changes the sizepicker title
+function changeSizePickerTitle(index, value) {
+  const defaultTitle = "Choose your size";
+  const title = document.querySelector(
+    `.toggle-sizepicker[data-index='${index}'] p`,
+  );
+  if (value) {
+    title.innerHTML = value;
+    title.setAttribute("--text-align", "center");
+  } else {
+    title.innerHTML = defaultTitle;
+    title.setAttribute("--text-align", "right");
+  }
+}
 // select all sizepickers toggle elements and add event listeners to open sizepicker menu
 const toggleSizepickers = document.querySelectorAll(".toggle-sizepicker");
 toggleSizepickers.forEach((ele) => {
@@ -121,9 +131,7 @@ sizepickerIcons.forEach((ele) => {
 const sizepickerMenus = document.querySelectorAll(".sizepicker-menu");
 sizepickerMenus.forEach((ele) => {
   ele.addEventListener("click", (e) => {
-    document.querySelector(
-      `.toggle-sizepicker[data-index='${ele.dataset.index}'] p`,
-    ).innerHTML = e.target.innerHTML;
+    changeSizePickerTitle(ele.dataset.index, e.target.innerHTML);
     currentlySelectedSize.setSelectedSize(e.target.dataset.value);
     closeSizePicker();
   });
