@@ -105,7 +105,7 @@ function changeSizePickerTitle(index, value) {
     title.setAttribute("--text-align", "center");
   } else {
     title.innerHTML = defaultTitle;
-    title.setAttribute("--text-align", "right");
+    title.setAttribute("--text-align", "left");
   }
 }
 // select all sizepickers toggle elements and add event listeners to open sizepicker menu
@@ -121,7 +121,7 @@ sizepickerIcons.forEach((ele) => {
     // to close using the exact target [arrow icon] only -same behaviour as in the design-
     e.stopPropagation();
     if (!isMenuOpen) {
-      openSizepicker(e);
+      openSizepicker(ele.dataset.index);
     } else {
       closeSizePicker();
     }

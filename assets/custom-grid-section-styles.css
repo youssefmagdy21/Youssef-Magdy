@@ -279,7 +279,7 @@
   cursor: default;
 }
 .toggle-sizepicker p {
-  --text-align: right;
+  --text-align: left;
   letter-spacing: calc(-0.02 * 1rem);
   line-height: 1;
   width: 100%;
