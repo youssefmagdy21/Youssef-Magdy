@@ -1,13 +1,5 @@
-const root = document.querySelector(":root");
-
-const productPopupButtons = document.querySelectorAll(".product-popup__btn");
-const productPopupContainers = document.querySelectorAll(
-  ".product-popup__container",
-);
-const productPopupWindows = document.querySelectorAll(".product-popup__window");
-const productPopupExits = document.querySelectorAll(".product-popup__exit");
-
-// open popup screen for selected product
+// ------------------- Product Popup Screen ------------------- //
+// function to open popup screen for selected product
 function openPopup(e) {
   const index = e.currentTarget.dataset.index;
   productPopupContainers.forEach((ele) => {
@@ -18,32 +10,38 @@ function openPopup(e) {
   });
   document.body.style.overflowY = "hidden";
 }
-
-productPopupButtons.forEach((element) => {
-  element.addEventListener("click", openPopup);
-});
-
-// close active popup screen
+// function to close currently active popup screen
 function closePopup() {
   productPopupContainers.forEach((ele) => {
     ele.classList.remove("active");
   });
   document.body.style.overflowY = "visible";
 }
-
+// select all product popup buttons and add event listeners to open popup
+const productPopupButtons = document.querySelectorAll(".product-popup__btn");
+productPopupButtons.forEach((element) => {
+  element.addEventListener("click", openPopup);
+});
+// select all product popup exit buttons and add event listeners to close popup
+const productPopupExits = document.querySelectorAll(".product-popup__exit");
 productPopupExits.forEach((ele) => {
   ele.addEventListener("click", closePopup);
 });
-
-// close popup when clicked anywhere outside the popup window
+// select all product popup containers and add event listeners to close popup when clicked anywhere outside the popup window
+const productPopupContainers = document.querySelectorAll(
+  ".product-popup__container",
+);
 productPopupContainers.forEach((ele) => {
-  let productWindow = ele.querySelector(".product-popup__window");
+  const productWindow = ele.querySelector(".product-popup__window");
   ele.addEventListener("click", (e) => {
     if (e.target !== productWindow && !productWindow.contains(e.target)) {
       closePopup();
     }
   });
 });
+// ------------------- Product Popup Screen ------------------- //
+
+// ------------------- Sizepicker ------------------- //
 
 // sizepicker open / close
 const toggleSizepickers = document.querySelectorAll(".toggle-sizepicker");
@@ -114,43 +112,17 @@ sizepickerMenus.forEach((ele) => {
     selectedSize = e.target.dataset.value;
   });
 });
+// ------------------- Sizepicker ------------------- //
 
-// product add to cart form
-const popupForms = document.querySelectorAll(".product-popup__addtocart-form");
-
-// function that takes a product index and returns all available variants for that product
-function getCurrentProductOptions(idx) {
-  const productVariants = JSON.parse(
-    document.querySelector(`.product-variants[data-index='${idx}']`)
-      .textContent,
-  );
-  // const productOptions = productVariants.map((ele) => {
-  //   const variant = ele.options.join("/");
-  //   return { id: ele.id, variant: variant };
-  // });
-  // return productOptions;
-  return getProductOptions(productVariants);
-}
-function getSelectedVariantID(selectedVariant, idx) {
-  const productOptions = getCurrentProductOptions(idx);
-  console.log(productOptions);
-  return getVariantID(productOptions, selectedVariant);
-  // let selectedVariantID;
-  // productOptions.forEach((ele) => {
-  //   if (ele.variant === selectedVariant) {
-  //     selectedVariantID = ele.id;
-  //     return;
-  //   }
-  // });
-
-  // return selectedVariantID;
-}
+// ------------------- Form Submission ------------------- //
+// function that takes a productVariants array and returns all available options for that product
 function getProductOptions(productVariants) {
   return productVariants.map((ele) => {
     const variant = ele.options.join("/");
     return { id: ele.id, variant: variant };
   });
 }
+// function that takes a productOptions array and a variant and returns the variant id
 function getVariantID(productOptions, variant) {
   let variantID;
   productOptions.forEach((ele) => {
@@ -162,26 +134,51 @@ function getVariantID(productOptions, variant) {
 
   return variantID;
 }
+// function that takes the current index and returns all available options for current product
+function getCurrentProductOptions(idx) {
+  const productVariants = JSON.parse(
+    document.querySelector(`.product-variants[data-index='${idx}']`)
+      .textContent,
+  );
+
+  return getProductOptions(productVariants);
+}
+// function that takes the current selectedVariant and current index and returns the variant id
+function getSelectedVariantID(selectedVariant, idx) {
+  const productOptions = getCurrentProductOptions(idx);
+
+  return getVariantID(productOptions, selectedVariant);
+}
+// function that takes a variant and returns the variant id for the extra product
 function getExtraProductVariantID(variant) {
   const extra_product = JSON.parse(
     document.querySelector("script[data-extra-product]").textContent,
   );
   const options = getProductOptions(extra_product.variants);
   return getVariantID(options, variant);
-  // extra_product.variants
-  //   .map((ele) => {
-  //     const variant = ele.options.join("/");
-  //     return { id: ele.id, variant: variant };
-  //   })
-  //   .forEach((ele) => {
-  //     if (ele.variant === "M/Black") {
-  //       extraProductVariantID = ele.id;
-  //       return;
-  //     }
-  //   });
-
-  // return extraProductVariantID;
 }
+// function that takes the extra product variant id and adds that product to cart automatically
+async function addExtraProduct(id) {
+  const extraProductData = {
+    items: [
+      {
+        id: id,
+        quantity: 1,
+      },
+    ],
+  };
+  const res = await fetch("/cart/add", {
+    method: "post",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(extraProductData),
+  });
+
+  return res;
+}
+// select all popup forms and add the submit event listner to add products to cart
+const popupForms = document.querySelectorAll(".product-popup__addtocart-form");
 popupForms.forEach((form) => {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -194,40 +191,27 @@ popupForms.forEach((form) => {
     );
     formData.set("size", selectedSize);
     formData.set("id", selectedVariantID);
-
-    console.log(selectedVariant, selectedVariantID);
-    console.log("form submited ", e);
-    for (const p of formData) {
-      console.log(p[0], " --> ", p[1]);
-    }
-
-    const res = await fetch("/cart/add", {
-      method: "post",
-      body: formData,
-    });
-    if (res.ok) {
-      console.log("ADDED");
+    try {
+      const res = await fetch("/cart/add", {
+        method: "post",
+        body: formData,
+      });
+      if (!res.ok) {
+        throw new Error("something went wrong...");
+      }
+      // add and extra product automatically for M/Black products
       if (selectedVariant === "M/Black") {
-        const extraProductData = {
-          items: [
-            {
-              id: getExtraProductVariantID(selectedVariant),
-              quantity: 1,
-            },
-          ],
-        };
-        const res2 = await fetch("/cart/add", {
-          method: "post",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(extraProductData),
-        });
-        if (res2.ok) {
-          // console.log(extra_product.title, " -> added");
-          // window.location.assign("/cart");
+        const id = getExtraProductVariantID(selectedVariant);
+        const extraProductRes = await addExtraProduct(id);
+        if (!extraProductRes.ok) {
+          throw new Error("something went wrong...");
         }
       }
+      // redirect to cart after adding a product from the popup
+      window.location.assign("/cart");
+    } catch (error) {
+      console.error(error);
     }
   });
 });
+// ------------------- Form Submission ------------------- //
