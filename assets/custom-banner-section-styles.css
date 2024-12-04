@@ -51,7 +51,12 @@
 .banner-section header .btn:hover > svg path {
   fill: var(--clr-white);
 }
-
+.icon {
+  height: 100%;
+}
+.icon img {
+  width: 100%;
+}
 @media (max-width: 768px) {
   .banner-section header {
     position: relative;
