@@ -61,7 +61,7 @@ let isMenuOpen = false;
 function openSizepicker(index) {
   isMenuOpen = true;
   currentlySelectedSize.resetSelectedSize();
-  changeSizePickerTitle(index);
+  changeSizePickerTitle();
   sizepickerMenus.forEach((ele) => {
     if (ele.dataset.index === index) {
       ele.classList.add("active");
@@ -95,18 +95,17 @@ function closeSizePicker() {
   });
 }
 // function that takes index and value of current size and changes the sizepicker title
-function changeSizePickerTitle(index, value) {
+function changeSizePickerTitle(value) {
   const defaultTitle = "Choose your size";
-  const title = document.querySelector(
-    `.toggle-sizepicker[data-index='${index}'] p`,
-  );
-  if (value) {
-    title.innerHTML = value;
-    title.style.setProperty("--text-align", "center");
-  } else {
-    title.innerHTML = defaultTitle;
-    title.style.setProperty("--text-align", "left");
-  }
+  document.querySelectorAll(`.toggle-sizepicker p`).forEach((ele) => {
+    if (value) {
+      ele.title.innerHTML = value;
+      ele.title.style.setProperty("--text-align", "center");
+    } else {
+      ele.title.innerHTML = defaultTitle;
+      ele.title.style.setProperty("--text-align", "left");
+    }
+  });
 }
 // select all sizepickers toggle elements and add event listeners to open sizepicker menu
 const toggleSizepickers = document.querySelectorAll(".toggle-sizepicker");
@@ -131,7 +130,7 @@ sizepickerIcons.forEach((ele) => {
 const sizepickerMenus = document.querySelectorAll(".sizepicker-menu");
 sizepickerMenus.forEach((ele) => {
   ele.addEventListener("click", (e) => {
-    changeSizePickerTitle(ele.dataset.index, e.target.innerHTML);
+    changeSizePickerTitle(e.target.innerHTML);
     currentlySelectedSize.setSelectedSize(e.target.dataset.value);
     closeSizePicker();
   });
