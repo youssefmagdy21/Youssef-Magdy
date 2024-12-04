@@ -17,6 +17,10 @@
     </div>
   {% else %}
     <article class="products-grid">
+      {% assign extra_product = all_products['dark-winter-jacket'] %}
+      <script type="application/json" data-extra-product>
+        {{ extra_product | json }}
+      </script>
       {% for selectedProduct in section.settings.selectedProducts %}
         {% liquid
           assign product_obj = selectedProduct
@@ -30,6 +34,8 @@
           assign form_id = 'addtocart-form_' | append: selectedProduct.id
           assign idx = forloop.index0
         %}
+        {% comment %} to do add automaticaly with any M/Black product {% endcomment %}
+        {% comment %} assign extra_product = all_products['dark-winter-jacket'] {% endcomment %}
 
         <div class="products-grid__item">
           <button class="product-popup__btn" data-index="{{ idx }}">

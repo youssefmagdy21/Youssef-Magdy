@@ -143,6 +143,11 @@ function getSelectedVariantID(selectedVariant, idx) {
 
   return selectedVariantID;
 }
+
+const extra_product = JSON.parse(
+  document.querySelector("script[data-extra-product]").textContent,
+);
+
 popupForms.forEach((form) => {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -168,27 +173,18 @@ popupForms.forEach((form) => {
     });
     if (res.ok) {
       console.log("ADDED");
-      window.location.assign("/cart");
+      if (selectedVariant === "M/Black") {
+        const extraProductData = new FormData(form);
+        extraProductData.set("product-id", extra_product.id);
+        const res2 = await fetch("/cart/add", {
+          method: "post",
+          body: extraProductData,
+        });
+        if (res2.ok) {
+          console.log(extraProductData.title, " -> added");
+          window.location.assign("/cart");
+        }
+      }
     }
   });
 });
-
-// popupForms.forEach((form) => {
-//   form.addEventListener("submit", async (e) => {
-//     e.preventDefault();
-//     const formData = new FormData(form);
-//     console.log("form submited ", e);
-//     for (const p of formData) {
-//       console.log(p[0], " --> ", p[1]);
-//     }
-//     const colorVariantId = formData.get("color");
-//     const sizeVariantId = selectedSize;
-//     console.log(sizeVariantId);
-//     formData.set("size", sizeVariantId);
-
-//     const res = await fetch("/cart/add", {
-//       method: "post",
-//       body: formData,
-//     });
-//   });
-// });
