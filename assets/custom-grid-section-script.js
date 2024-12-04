@@ -116,7 +116,7 @@ sizepickerIcons.forEach((ele) => {
 // select all sizepicker menus and add event listeners to handle size selection
 const sizepickerMenus = document.querySelectorAll(".sizepicker-menu");
 sizepickerMenus.forEach((ele) => {
-  ele.addEventListener("click", () => {
+  ele.addEventListener("click", (e) => {
     document.querySelector(
       `.toggle-sizepicker[data-index='${ele.dataset.index}'] p`,
     ).innerHTML = e.target.innerHTML;
