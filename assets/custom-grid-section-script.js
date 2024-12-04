@@ -174,7 +174,7 @@ popupForms.forEach((form) => {
     if (res.ok) {
       console.log("ADDED");
       if (selectedVariant === "M/Black") {
-        const extraProductData = new FormData(form);
+        const extraProductData = formData;
         extraProductData.set("product-id", extra_product.id);
         const res2 = await fetch("/cart/add", {
           method: "post",
