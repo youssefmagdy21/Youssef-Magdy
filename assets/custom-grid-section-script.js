@@ -102,10 +102,10 @@ function changeSizePickerTitle(index, value) {
   );
   if (value) {
     title.innerHTML = value;
-    title.setAttribute("--text-align", "center");
+    title.style.setProperty("--text-align", "center");
   } else {
     title.innerHTML = defaultTitle;
-    title.setAttribute("--text-align", "left");
+    title.style.setProperty("--text-align", "left");
   }
 }
 // select all sizepickers toggle elements and add event listeners to open sizepicker menu
