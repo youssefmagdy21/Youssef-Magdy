@@ -201,6 +201,12 @@ async function addExtraProduct(id) {
 
   return res;
 }
+// function to reset selected colors after submission
+function resetCheckedColorSelections() {
+  document.querySelectorAll("input[type=radio]:checked").forEach((ele) => {
+    ele.checked = false;
+  });
+}
 // select all popup forms and add the submit event listner to add products to cart
 const popupForms = document.querySelectorAll(".product-popup__addtocart-form");
 popupForms.forEach((form) => {
@@ -217,7 +223,7 @@ popupForms.forEach((form) => {
       setTimeout(() => {
         submitBtn.disabled = false;
         submitBtn.innerHTML = defaultBtnContent;
-      }, 500);
+      }, 1000);
     } else {
       const selectedVariant = `${selectedSize}/${selectedColor}`;
       const selectedVariantID = getSelectedVariantID(
@@ -243,6 +249,10 @@ popupForms.forEach((form) => {
             throw new Error("something went wrong");
           }
         }
+        // reset all color selections
+        resetCheckedColorSelections();
+        // reset selected size
+        currentlySelectedSize.resetSelectedSize();
         // redirect to cart after adding a product from the popup
         submitBtn.innerHTML = "✅redirecting to cart✅";
         setTimeout(() => {
