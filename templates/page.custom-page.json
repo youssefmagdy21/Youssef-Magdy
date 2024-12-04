@@ -3,7 +3,7 @@
     "banner": {
       "type": "custom-banner-section",
       "settings": {
-        "logoImage": "/assets/logo.svg"
+        "logoImage": "youssef-magdy-test.myshopify.com/cdn/shop/t/2/assets/logo.svg"
       }
     },
     "grid": {
