@@ -147,7 +147,20 @@ function getSelectedVariantID(selectedVariant, idx) {
 const extra_product = JSON.parse(
   document.querySelector("script[data-extra-product]").textContent,
 );
-
+console.log(extra_product);
+let extraProductVariantID;
+extra_product.variants
+  .map((ele) => {
+    const variant = ele.options.join("/");
+    return { id: ele.id, variant: variant };
+  })
+  .forEach((ele) => {
+    if (ele.variant === "M/Black") {
+      extraProductVariantID = ele.id;
+      return;
+    }
+  });
+console.log(extraProductVariantID);
 popupForms.forEach((form) => {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -173,18 +186,18 @@ popupForms.forEach((form) => {
     });
     if (res.ok) {
       console.log("ADDED");
-      if (selectedVariant === "M/Black") {
-        const extraProductData = formData;
-        extraProductData.set("product-id", extra_product.id);
-        const res2 = await fetch("/cart/add", {
-          method: "post",
-          body: extraProductData,
-        });
-        if (res2.ok) {
-          console.log(extraProductData.title, " -> added");
-          window.location.assign("/cart");
-        }
-      }
+      // if (selectedVariant === "M/Black") {
+      //   const extraProductData = formData;
+      //   extraProductData.set("product-id", extra_product.id);
+      //   const res2 = await fetch("/cart/add", {
+      //     method: "post",
+      //     body: extraProductData,
+      //   });
+      //   if (res2.ok) {
+      //     console.log(extraProductData.title, " -> added");
+      //     window.location.assign("/cart");
+      //   }
+      // }
     }
   });
 });
