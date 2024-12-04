@@ -54,8 +54,11 @@ function openSizepicker(e) {
   isMenuOpen = true;
   // sizepickerTitle.innerHTML = "Choose your size";
   const index = e.currentTarget.dataset.index;
+  console.log(
+    document.querySelector(`.toggle-sizepicker[data-index='${index}'] p`),
+  );
   document.querySelector(
-    `.toggleSizepicker[data-index='${index}'] p`,
+    `.toggle-sizepicker[data-index='${index}'] p`,
   ).innerHTML = "Choose your size";
   sizepickerMenus.forEach((ele) => {
     if (ele.dataset.index === index) {
@@ -109,7 +112,7 @@ sizepickerMenus.forEach((ele) => {
   ele.addEventListener("click", (e) => {
     // sizepickerTitle.innerHTML = e.target.innerHTML;
     document.querySelector(
-      `.toggleSizepicker[data-index='${ele.dataset.index}'] p`,
+      `.toggle-sizepicker[data-index='${ele.dataset.index}'] p`,
     ).innerHTML = e.target.innerHTML;
     closeSizePicker(e);
     console.log(e.target, e);
