@@ -1,3 +1,16 @@
+// global object to handle the state of the currently selected size
+let currentlySelectedSize = {
+  selectedSize: "",
+  setSelectedSize: function (selection) {
+    this.selectedSize = selection;
+  },
+  getSelectedSize: function () {
+    return this.selectedSize;
+  },
+  resetSelectedSize: function () {
+    this.selectedSize = "";
+  },
+};
 // ------------------- Product Popup Screen ------------------- //
 // function to open popup screen for selected product
 function openPopup(e) {
@@ -16,6 +29,7 @@ function closePopup() {
     ele.classList.remove("active");
   });
   document.body.style.overflowY = "visible";
+  currentlySelectedSize.resetSelectedSize();
 }
 // select all product popup buttons and add event listeners to open popup
 const productPopupButtons = document.querySelectorAll(".product-popup__btn");
@@ -44,21 +58,11 @@ productPopupContainers.forEach((ele) => {
 // ------------------- Sizepicker ------------------- //
 // boolean to determine the state of the sizepicker menu
 let isMenuOpen = false;
-// object to handle the state of the currently selected size
-let currentlySelectedSize = {
-  selectedSize: "",
-  setSelectedSize: function (selection) {
-    this.selectedSize = selection;
-  },
-  getSelectedSize: function () {
-    return this.selectedSize;
-  },
-};
 // function that takes index of current sizepicker and opens the sizepicker menu
 function openSizepicker(index) {
   isMenuOpen = true;
   // const index = e.currentTarget.dataset.index;
-  currentlySelectedSize.setSelectedSize("");
+  currentlySelectedSize.resetSelectedSize();
   document.querySelector(
     `.toggle-sizepicker[data-index='${index}'] p`,
   ).innerHTML = "Choose your size";
