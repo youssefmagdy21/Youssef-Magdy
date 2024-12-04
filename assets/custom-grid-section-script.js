@@ -54,8 +54,9 @@ function openSizepicker(e) {
   isMenuOpen = true;
   // sizepickerTitle.innerHTML = "Choose your size";
   const index = e.currentTarget.dataset.index;
-  querySelector(`.toggleSizepicker[data-index='${index}'] p`).innerHTML =
-    "Choose your size";
+  document.querySelector(
+    `.toggleSizepicker[data-index='${index}'] p`,
+  ).innerHTML = "Choose your size";
   sizepickerMenus.forEach((ele) => {
     if (ele.dataset.index === index) {
       ele.classList.add("active");
@@ -107,7 +108,7 @@ let selectedSize;
 sizepickerMenus.forEach((ele) => {
   ele.addEventListener("click", (e) => {
     // sizepickerTitle.innerHTML = e.target.innerHTML;
-    querySelector(
+    document.querySelector(
       `.toggleSizepicker[data-index='${ele.dataset.index}'] p`,
     ).innerHTML = e.target.innerHTML;
     closeSizePicker(e);
