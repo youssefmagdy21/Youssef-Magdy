@@ -126,7 +126,7 @@
                     <ul>
                       {% for value in product_size.values %}
                         <li data-value="{{ value | escape }}">
-                          {{ value }}
+                          {{ value | strip | strip_newlines }}
                         </li>
                       {% endfor %}
                     </ul>

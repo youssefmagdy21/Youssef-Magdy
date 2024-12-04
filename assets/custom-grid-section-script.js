@@ -47,15 +47,15 @@ productPopupContainers.forEach((ele) => {
 const toggleSizepickers = document.querySelectorAll(".toggle-sizepicker");
 // const sizepickerTitles = document.querySelectorAll(".sizepicker p");
 const sizepickerIcons = document.querySelectorAll(".sizepicker .arrow img");
-const sizepickerMenus = document.querySelectorAll(
-  ".sizepicker .sizepicker-menu",
-);
+const sizepickerMenus = document.querySelectorAll(".sizepicker-menu");
 
 let isMenuOpen = false;
 function openSizepicker(e) {
   isMenuOpen = true;
   // sizepickerTitle.innerHTML = "Choose your size";
   const index = e.currentTarget.dataset.index;
+  querySelector(`.toggleSizepicker[data-index='${index}'] p`).innerHTML =
+    "Choose your size";
   sizepickerMenus.forEach((ele) => {
     if (ele.dataset.index === index) {
       ele.classList.add("active");
@@ -107,6 +107,9 @@ let selectedSize;
 sizepickerMenus.forEach((ele) => {
   ele.addEventListener("click", (e) => {
     // sizepickerTitle.innerHTML = e.target.innerHTML;
+    querySelector(
+      `.toggleSizepicker[data-index='${ele.dataset.index}'] p`,
+    ).innerHTML = e.target.innerHTML;
     closeSizePicker(e);
     console.log(e.target, e);
     selectedSize = e.target.dataset.value;
