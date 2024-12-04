@@ -195,8 +195,8 @@ popupForms.forEach((form) => {
           body: extraProductData,
         });
         if (res2.ok) {
-          console.log(extraProductData.title, " -> added");
-          window.location.assign("/cart");
+          console.log(extra_product.title, " -> added");
+          // window.location.assign("/cart");
         }
       }
     }
