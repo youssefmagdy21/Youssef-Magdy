@@ -98,6 +98,8 @@ section h6 {
   transition:
     transform ease 250ms,
     box-shadow ease 250ms;
+  cursor: default;
+  text-decoration: none;
 }
 .btn:hover {
   transform: scale(1.01);

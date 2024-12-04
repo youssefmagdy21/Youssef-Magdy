@@ -39,6 +39,7 @@
   transform: translateX(0);
 }
 .banner-section header .btn {
+  color: var(--clr-text);
   background-color: var(--clr-btn-secondary);
 }
 .banner-section header .btn::before {

@@ -2,7 +2,9 @@
   "sections": {
     "banner": {
       "type": "custom-banner-section",
-      "settings": {}
+      "settings": {
+        "logoImage": "assets/logo.svg"
+      }
     },
     "grid": {
       "type": "custom-grid-section",

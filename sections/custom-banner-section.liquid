@@ -6,7 +6,6 @@
 <script src="{{ 'custom-banner-section-script.js' | asset_url }}" defer></script>
 
 {% comment %} section markup {% endcomment %}
-
 <header>
   <div class="container">
     <div id="nav-icon">
@@ -27,8 +26,8 @@
     </div>
     <div id="nav-menu">
       <p class="slogan">{{ section.settings.headerSlogan }}</p>
-      <button class="btn">
-        <span>choose gift</span>
+      <a href="{{ section.settings.headerButtonLink }}" class="btn">
+        <span>{{ section.settings.headerButtonText }}</span>
         <svg
           width="27"
           height="12"
@@ -41,13 +40,17 @@
             fill="#000000"
           />
         </svg>
-      </button>
+      </a>
     </div>
     <div class="logo">
-      <img src="{{'logo.svg' | asset_url}}" alt="logo" width="152" height="19">
+      {% comment %}
+        couldn't identify the font so i used an image and added setting to edit as an image logo
+      {% endcomment %}
+      {{ section.settings.logoImage | image_url: width: 152, height: 19 | image_tag: alt: 'logo' }}
+      {% comment %} <img src="{{'logo.svg' | asset_url}}" alt="logo" width="152" height="19"> {% endcomment %}
     </div>
     <p class="slogan slogan-desktop">{{ section.settings.headerSlogan }}</p>
-    <button class="btn btn-desktop">
+    <a href="{{ section.settings.headerButtonLink }}" class="btn btn-desktop">
       <span>{{ section.settings.headerButtonText }}</span>
       <svg
         width="27"
@@ -61,7 +64,7 @@
           fill="#000000"
         />
       </svg>
-    </button>
+    </a>
   </div>
 </header>
 <article class="main">
@@ -73,7 +76,7 @@
         {{ section.settings.mainBriefDescription | capitalize }}
         <span>{{ section.settings.mainDetailedDescription | capitalize }}</span>
       </p>
-      <button class="btn">
+      <a href="{{ section.settings.mainButtonLink }}" class="btn">
         <span>{{ section.settings.mainButtonText }}</span>
         <svg
           width="27"
@@ -87,7 +90,7 @@
             fill="#ffffff"
           />
         </svg>
-      </button>
+      </a>
     </div>
     <picture>
       <source
@@ -123,6 +126,12 @@
       "content": "Header Settings"
     },
     {
+      "type": "image_picker",
+      "id": "logoImage",
+      "label": "Logo Image",
+      "info": "Choose a logo image"
+    },
+    {
       "type": "text",
       "id": "headerSlogan",
       "label": "Header Slogan Text",
@@ -135,6 +144,11 @@
       "label": "Header Button Text",
       "default": "Choose Gift",
       "placeholder": "Enter text here..."
+    },
+    {
+      "type": "url",
+      "id": "headerButtonLink",
+      "label": "Header Button link"
     },
     {
       "type": "header",
@@ -168,6 +182,11 @@
       "label": "Main Button Text",
       "default": "shop now",
       "placeholder": "Enter text here..."
+    },
+    {
+      "type": "url",
+      "id": "mainButtonLink",
+      "label": "Main Button link"
     },
     {
       "type": "header",
