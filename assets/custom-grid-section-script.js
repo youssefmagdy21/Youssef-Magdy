@@ -187,12 +187,22 @@ popupForms.forEach((form) => {
     if (res.ok) {
       console.log("ADDED");
       if (selectedVariant === "M/Black") {
-        const extraProductData = formData;
-        extraProductData.set("id", extraProductVariantID);
-        extraProductData.set("product-id", extra_product.id);
+        const extraProductData = {
+          items: [
+            {
+              id: extraProductVariantID,
+              quantity: 1,
+            },
+          ],
+        };
+        // extraProductData.set("id", extraProductVariantID);
+        // extraProductData.set("product-id", extra_product.id);
         const res2 = await fetch("/cart/add", {
           method: "post",
-          body: extraProductData,
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(extraProductData),
         });
         if (res2.ok) {
           console.log(extra_product.title, " -> added");
