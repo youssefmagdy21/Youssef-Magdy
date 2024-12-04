@@ -49,8 +49,6 @@ h6 {
   --clr-btnCart: hsla(0, 0%, 97%, 0.8);
   --ff-grid-header: "Lustria", serif;
   --ff-primary: "Jost", sans-serif;
-  /* --radio-choice-clr-1: var(--clr-white);
-  --radio-choice-clr-2: var(--clr-white); */
 
   /* explicit default style values */
   --fs-default: 16px;
@@ -62,8 +60,6 @@ h6 {
 /* global variables */
 /* general styles */
 html {
-  /* reset relative font size */
-  font-size: var(--fs-default);
   -webkit-font-smoothing: antialiased;
   /* remove highlight when tapping buttons */
   -webkit-tap-highlight-color: transparent;
@@ -93,9 +89,9 @@ section h6 {
   align-items: center;
   justify-content: center;
   text-transform: uppercase;
-  gap: 1rem;
-  width: 12.9375rem;
-  height: 2.8125rem;
+  gap: 16px;
+  width: 207px;
+  height: 45px;
   border: none;
   position: relative;
   z-index: 1;

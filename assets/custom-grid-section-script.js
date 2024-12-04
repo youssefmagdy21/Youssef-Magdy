@@ -249,13 +249,13 @@ popupForms.forEach((form) => {
             throw new Error("something went wrong");
           }
         }
-        // reset all color selections
-        resetCheckedColorSelections();
-        // reset selected size
-        currentlySelectedSize.resetSelectedSize();
         // redirect to cart after adding a product from the popup
         submitBtn.innerHTML = "✅redirecting to cart✅";
         setTimeout(() => {
+          // reset all color selections
+          resetCheckedColorSelections();
+          // reset selected size
+          currentlySelectedSize.resetSelectedSize();
           window.location.assign("/cart");
         }, 1000);
       } catch (error) {

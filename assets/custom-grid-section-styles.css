@@ -1,25 +1,25 @@
 /* grid section styles */
 /* //////////////////////////////////////// */
 .grid-section-container {
-  padding: 5.625rem 3.125rem 3.125rem 3.125rem;
+  padding: 90px 50px 50px 50px;
 }
 .grid-section h2 {
   font-family: var(--ff-grid-header);
-  font-size: 2.25rem;
+  font-size: 36px;
   line-height: 1.2;
   font-weight: normal;
-  margin-bottom: 1.875rem;
+  margin-bottom: 30px;
 }
 .products-grid__empty {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 27.0625rem;
+  height: 433px;
   border: #000000 2px dashed;
 }
 .products-grid__empty p {
-  font-size: 1.25rem;
+  font-size: 20px;
   line-height: 2.5;
   color: var(--clr-black);
   text-align: center;
@@ -27,12 +27,12 @@
 .products-grid__empty p > em {
   color: var(--clr-btn-secondary);
   background-color: var(--clr-black);
-  padding: 0.25rem 0.375rem;
+  padding: 4px 6px;
 }
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(27.0625rem, 1fr));
-  gap: 1.25rem;
+  grid-template-columns: repeat(3, minmax(433px, 1fr));
+  gap: 20px;
   justify-items: stretch;
 }
 .products-grid__item {
@@ -43,8 +43,8 @@
   height: 100%;
 }
 .products-grid__item .product-popup__btn {
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 20px;
+  height: 20px;
   border: none;
   border-radius: 50%;
   display: flex;
@@ -62,27 +62,27 @@
   top: 60%;
   left: 40%;
 }
-@media (max-width: 90rem) {
+@media (max-width: 1440px) {
   .products-grid {
-    grid-template-columns: repeat(3, minmax(10.625rem, 1fr));
+    grid-template-columns: repeat(3, minmax(170px, 1fr));
   }
 }
-@media (max-width: 48rem) {
+@media (max-width: 768px) {
   .grid-section-container {
-    padding: 2.5rem 1rem 1.5rem 1rem;
+    padding: 40px 16px 24px 16px;
   }
   .grid-section h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1.25rem;
+    font-size: 24px;
+    margin-bottom: 20px;
     text-align: center;
   }
   .products-grid {
-    grid-template-columns: repeat(2, minmax(10.625rem, 1fr));
-    gap: 0.25rem;
+    grid-template-columns: repeat(2, minmax(170px, 1fr));
+    gap: 4px;
   }
 }
 /* for very small mobile screens */
-@media (max-width: 23.4375rem) {
+@media (max-width: 375px) {
   .products-grid {
     grid-template-columns: 1fr;
   }
@@ -98,9 +98,6 @@
   min-height: var(--view-height);
   background-color: hsl(0, 0%, 0%, 0.2);
   display: none;
-  /* display: flex;
-	align-items: center;
-	justify-content: center; */
 }
 .product-popup__container.active {
   display: flex;
@@ -111,18 +108,18 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 19.4375rem;
-  height: 27.9375rem;
+  width: 311px;
+  height: 447px;
   background-color: var(--clr-white);
   box-shadow: 0 2px 4px hsl(0, 0%, 0%, 0.2);
-  padding-top: 0.875rem;
-  padding-bottom: 1.5rem;
+  padding-top: 14px;
+  padding-bottom: 24px;
   z-index: 1;
 }
 .exit-btn-wrapper {
-  padding-right: 1rem;
+  padding-right: 16px;
   width: 100%;
-  margin-bottom: 0.5rem;
+  margin-bottom: 8px;
 }
 .product-popup__exit {
   background-color: transparent;
@@ -138,14 +135,13 @@
 /* popup content */
 .product-popup__content {
   display: flex;
-  gap: 0.5rem;
+  gap: 8px;
   padding-left: 16px;
   padding-right: 16px;
   margin-bottom: 8px;
 }
 .product-popup__image {
-  width: 7.5rem;
-  /* height: 8.75rem; */
+  width: 120px;
   flex-shrink: 0;
   flex-grow: 0;
 }
@@ -157,41 +153,41 @@
 .product-popup__text h3 {
   font-weight: 300;
   line-height: 1.2;
-  font-size: 1rem;
-  margin-top: 0.75rem;
-  margin-bottom: 1.25rem;
+  font-size: 16px;
+  margin-top: 12px;
+  margin-bottom: 20px;
 }
 .product-popup__price {
   font-family: var(--ff-grid-header);
   line-height: 1.2;
-  font-size: 1rem;
-  margin-bottom: 0.75rem;
+  font-size: 16px;
+  margin-bottom: 12px;
 }
 .product-popup__desc {
-  font-size: 0.875rem;
+  font-size: 14px;
   font-weight: 300;
-  letter-spacing: -0.0088rem;
+  letter-spacing: -0.1408px;
   line-height: 1.1;
 }
 /* popup content */
 .product-popup__window .wrapper {
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 .product-popup__window h4 {
-  font-size: 0.875rem;
+  font-size: 14px;
   line-height: 1.3;
   font-weight: 400;
-  margin-bottom: 0.375rem;
+  margin-bottom: 6px;
 }
 /* popup color picker */
 .product-popup__colorpicker {
-  margin-bottom: 0.75rem;
+  margin-bottom: 12px;
 }
 .product-popup__colorpicker .colorpicker {
-  font-size: 1.125rem;
+  font-size: 18px;
   line-height: 1;
-  letter-spacing: calc(-0.02 * 1.125rem);
+  letter-spacing: calc(-0.02 * 18px);
   display: flex;
   align-items: center;
   position: relative;
@@ -200,14 +196,13 @@
 .product-popup__colorpicker .colorpicker label {
   height: 100%;
   flex: 1;
-  padding: 0.625rem;
-  padding-left: 0.9375rem;
+  padding: 10px;
+  padding-left: 15px;
   cursor: pointer;
   position: relative;
   transition: color ease 300ms;
 }
 .product-popup__colorpicker .colorpicker .checked-item {
-  /* reset shopify empty divs display none */
   display: block;
   height: 100%;
   width: 50%;
@@ -240,7 +235,7 @@
 .product-popup__colorpicker .colorpicker label::before {
   content: "";
   height: 100%;
-  width: 0.375rem;
+  width: 6px;
   border-right: #000000 1px solid;
   border-left: #000000 1px solid;
   position: absolute;
@@ -257,8 +252,8 @@
 }
 .product-popup__colorpicker .colorpicker,
 .product-popup__sizepicker .sizepicker {
-  width: 16.875rem;
-  height: 2.5rem;
+  width: 270px;
+  height: 40px;
 }
 /* popup color picker */
 /* popup size menu */
@@ -273,23 +268,23 @@
   /* justify-content: space-between; */
   cursor: pointer;
   height: 100%;
-  /* padding-left: 0.875rem; */
+  /* padding-left: 14px; */
 }
 .product-popup__sizepicker .sizepicker .toggle-sizepicker.active {
   cursor: default;
 }
 .toggle-sizepicker p {
   --text-align: left;
-  letter-spacing: calc(-0.02 * 1rem);
+  letter-spacing: calc(-0.02 * 16px);
   line-height: 1;
   width: 100%;
-  padding: 0 0.875rem;
+  padding: 0 14px;
   text-align: var(--text-align);
 }
 .toggle-sizepicker .arrow {
   border-left: black 1px solid;
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
+  padding-left: 20px;
+  padding-right: 20px;
   height: 100%;
   display: flex;
   align-items: center;
@@ -307,10 +302,10 @@
 .sizepicker-menu {
   position: absolute;
   left: 0;
-  top: 2.375rem;
+  top: 38px;
   border: black 1px solid;
   width: 100%;
-  height: 6.25rem;
+  height: 100px;
   overflow-y: scroll;
   background-color: #ffffff;
   visibility: hidden;
