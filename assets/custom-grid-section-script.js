@@ -58,7 +58,7 @@ let currentlySelectedSize = {
 function openSizepicker(index) {
   isMenuOpen = true;
   // const index = e.currentTarget.dataset.index;
-  currentlySelectedSize.selectedSize("");
+  currentlySelectedSize.setSelectedSize("");
   document.querySelector(
     `.toggle-sizepicker[data-index='${index}'] p`,
   ).innerHTML = "Choose your size";
