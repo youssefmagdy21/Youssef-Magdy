@@ -3,7 +3,7 @@
     "banner": {
       "type": "custom-banner-section",
       "settings": {
-        "logoImage": "assets/logo.svg"
+        "logoImage": "./assets/logo.svg"
       }
     },
     "grid": {
