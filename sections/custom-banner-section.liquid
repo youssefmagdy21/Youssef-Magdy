@@ -47,7 +47,7 @@
         couldn't identify the font so i used an image and added setting to edit as an image logo
       {% endcomment %}
       {% if section.settings.logoImage != null %}
-        {{ section.settings.logoImage | image_url: width: 152, height: 19 | image_tag: alt: 'logo' }}
+        {{ section.settings.logoImage | image_url: width: 152 | image_tag: alt: 'logo' }}
       {% else %}
         <img src="{{'logo.svg' | asset_url}}" alt="logo" width="152" height="19">
       {% endif %}
