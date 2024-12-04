@@ -124,43 +124,64 @@ function getCurrentProductOptions(idx) {
     document.querySelector(`.product-variants[data-index='${idx}']`)
       .textContent,
   );
-  const productOptions = productVariants.map((ele) => {
-    const variant = ele.options.join("/");
-    return { id: ele.id, variant: variant };
-  });
-  return productOptions;
+  // const productOptions = productVariants.map((ele) => {
+  //   const variant = ele.options.join("/");
+  //   return { id: ele.id, variant: variant };
+  // });
+  // return productOptions;
+  return getProductOptions(productVariants);
 }
 function getSelectedVariantID(selectedVariant, idx) {
   const productOptions = getCurrentProductOptions(idx);
   console.log(productOptions);
-  let selectedVariantID;
-  productOptions.forEach((ele) => {
-    if (ele.variant === selectedVariant) {
-      selectedVariantID = ele.id;
-      return;
-    }
-  });
+  return getVariantID(productOptions, selectedVariant);
+  // let selectedVariantID;
+  // productOptions.forEach((ele) => {
+  //   if (ele.variant === selectedVariant) {
+  //     selectedVariantID = ele.id;
+  //     return;
+  //   }
+  // });
 
-  return selectedVariantID;
+  // return selectedVariantID;
 }
-
-const extra_product = JSON.parse(
-  document.querySelector("script[data-extra-product]").textContent,
-);
-console.log(extra_product);
-let extraProductVariantID;
-extra_product.variants
-  .map((ele) => {
+function getProductOptions(productVariants) {
+  return productVariants.map((ele) => {
     const variant = ele.options.join("/");
     return { id: ele.id, variant: variant };
-  })
-  .forEach((ele) => {
-    if (ele.variant === "M/Black") {
-      extraProductVariantID = ele.id;
+  });
+}
+function getVariantID(productOptions, variant) {
+  let variantID;
+  productOptions.forEach((ele) => {
+    if (ele.variant === variant) {
+      variantID = ele.id;
       return;
     }
   });
-console.log(extraProductVariantID);
+
+  return variantID;
+}
+function getExtraProductVariantID(variant) {
+  const extra_product = JSON.parse(
+    document.querySelector("script[data-extra-product]").textContent,
+  );
+  const options = getProductOptions(extra_product.variants);
+  return getVariantID(options, variant);
+  // extra_product.variants
+  //   .map((ele) => {
+  //     const variant = ele.options.join("/");
+  //     return { id: ele.id, variant: variant };
+  //   })
+  //   .forEach((ele) => {
+  //     if (ele.variant === "M/Black") {
+  //       extraProductVariantID = ele.id;
+  //       return;
+  //     }
+  //   });
+
+  // return extraProductVariantID;
+}
 popupForms.forEach((form) => {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -190,13 +211,11 @@ popupForms.forEach((form) => {
         const extraProductData = {
           items: [
             {
-              id: extraProductVariantID,
+              id: getExtraProductVariantID(selectedVariant),
               quantity: 1,
             },
           ],
         };
-        // extraProductData.set("id", extraProductVariantID);
-        // extraProductData.set("product-id", extra_product.id);
         const res2 = await fetch("/cart/add", {
           method: "post",
           headers: {
@@ -205,7 +224,7 @@ popupForms.forEach((form) => {
           body: JSON.stringify(extraProductData),
         });
         if (res2.ok) {
-          console.log(extra_product.title, " -> added");
+          // console.log(extra_product.title, " -> added");
           // window.location.assign("/cart");
         }
       }
