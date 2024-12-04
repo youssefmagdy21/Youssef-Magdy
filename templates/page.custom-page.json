@@ -2,9 +2,7 @@
   "sections": {
     "banner": {
       "type": "custom-banner-section",
-      "settings": {
-        "logoImage": "https://youssef-magdy-test.myshopify.com/cdn/shop/t/2/assets/logo.svg"
-      }
+      "settings": {}
     },
     "grid": {
       "type": "custom-grid-section",
