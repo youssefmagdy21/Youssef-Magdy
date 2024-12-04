@@ -42,21 +42,23 @@ productPopupContainers.forEach((ele) => {
 // ------------------- Product Popup Screen ------------------- //
 
 // ------------------- Sizepicker ------------------- //
-
-// sizepicker open / close
-const toggleSizepickers = document.querySelectorAll(".toggle-sizepicker");
-// const sizepickerTitles = document.querySelectorAll(".sizepicker p");
-const sizepickerIcons = document.querySelectorAll(".sizepicker .arrow img");
-const sizepickerMenus = document.querySelectorAll(".sizepicker-menu");
-
+// boolean to determine the state of the sizepicker menu
 let isMenuOpen = false;
-function openSizepicker(e) {
+// object to handle the state of the currently selected size
+let currentlySelectedSize = {
+  selectedSize: "",
+  setSelectedSize: function (selection) {
+    this.selectedSize = selection;
+  },
+  getSelectedSize: function () {
+    return this.selectedSize;
+  },
+};
+// function that takes index of current sizepicker and opens the sizepicker menu
+function openSizepicker(index) {
   isMenuOpen = true;
-  // sizepickerTitle.innerHTML = "Choose your size";
-  const index = e.currentTarget.dataset.index;
-  console.log(
-    document.querySelector(`.toggle-sizepicker[data-index='${index}'] p`),
-  );
+  // const index = e.currentTarget.dataset.index;
+  currentlySelectedSize.selectedSize("");
   document.querySelector(
     `.toggle-sizepicker[data-index='${index}'] p`,
   ).innerHTML = "Choose your size";
@@ -79,7 +81,8 @@ function openSizepicker(e) {
     }
   });
 }
-function closeSizePicker(e) {
+// function to close the sizepicker menu
+function closeSizePicker() {
   isMenuOpen = false;
   sizepickerMenus.forEach((ele) => {
     ele.classList.remove("active");
@@ -91,32 +94,34 @@ function closeSizePicker(e) {
     ele.classList.remove("active");
   });
 }
-
+// select all sizepickers toggle elements and add event listeners to open sizepicker menu
+const toggleSizepickers = document.querySelectorAll(".toggle-sizepicker");
 toggleSizepickers.forEach((ele) => {
-  ele.addEventListener("click", openSizepicker);
+  ele.addEventListener("click", () => openSizepicker(ele.dataset.index));
 });
-
+// select all sizepickers toggle icons and add event listeners to open sizepicker menu
+// and to close the menu if open
+const sizepickerIcons = document.querySelectorAll(".sizepicker .arrow img");
 sizepickerIcons.forEach((ele) => {
   ele.addEventListener("click", (e) => {
+    // to close using the exact target [arrow icon] only -same behaviour as in the design-
     e.stopPropagation();
     if (!isMenuOpen) {
       openSizepicker(e);
     } else {
-      closeSizePicker(e);
+      closeSizePicker();
     }
   });
 });
-
-let selectedSize;
+// select all sizepicker menus and add event listeners to handle size selection
+const sizepickerMenus = document.querySelectorAll(".sizepicker-menu");
 sizepickerMenus.forEach((ele) => {
-  ele.addEventListener("click", (e) => {
-    // sizepickerTitle.innerHTML = e.target.innerHTML;
+  ele.addEventListener("click", () => {
     document.querySelector(
       `.toggle-sizepicker[data-index='${ele.dataset.index}'] p`,
     ).innerHTML = e.target.innerHTML;
-    closeSizePicker(e);
-    console.log(e.target, e);
-    selectedSize = e.target.dataset.value;
+    currentlySelectedSize.setSelectedSize(e.target.dataset.value);
+    closeSizePicker();
   });
 });
 // ------------------- Sizepicker ------------------- //
@@ -191,6 +196,7 @@ popupForms.forEach((form) => {
     e.preventDefault();
     const formData = new FormData(form);
     const selectedColor = formData.get("color");
+    const selectedSize = currentlySelectedSize.getSelectedSize();
     const selectedVariant = `${selectedSize}/${selectedColor}`;
     const selectedVariantID = getSelectedVariantID(
       selectedVariant,
