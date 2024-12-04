@@ -99,11 +99,11 @@ function changeSizePickerTitle(value) {
   const defaultTitle = "Choose your size";
   document.querySelectorAll(`.toggle-sizepicker p`).forEach((ele) => {
     if (value) {
-      ele.title.innerHTML = value;
-      ele.title.style.setProperty("--text-align", "center");
+      ele.innerHTML = value;
+      ele.style.setProperty("--text-align", "center");
     } else {
-      ele.title.innerHTML = defaultTitle;
-      ele.title.style.setProperty("--text-align", "left");
+      ele.innerHTML = defaultTitle;
+      ele.style.setProperty("--text-align", "left");
     }
   });
 }
